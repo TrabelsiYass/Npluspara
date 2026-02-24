@@ -1,0 +1,253 @@
+.cursor{
+    cursor: pointer;
+}
+
+.homeProducts .container {
+    max-width: 100% !important;
+    padding: 0 15px;
+}
+
+
+
+.img-ad-banner-2 {
+    
+    width: 100% !important;
+    height: 100% !important; 
+    border-radius: 10px;
+}
+
+.homeProducts{
+    padding: 25px 20px;
+    width: 100%;
+}
+
+
+
+
+.homeProducts .banner {
+    width: 100%;
+    min-height: 480px; /* Adjust to match your Swiper height */
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    
+    /* Elegant Green Gradient */
+    background: linear-gradient(180deg, #27ae60 0%, #6bad3c 100%);
+    
+    /* Subtle texture to make the gradient look premium */
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(39, 173, 35, 0.89) 0%, transparent 80%),
+        radial-gradient(at 100% 100%, rgba(0,0,0,0.05) 0%, transparent 50%);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+
+.homeProducts .banner:hover {
+    filter: brightness(1.05);
+}
+
+
+.homeProducts .banner::before {
+    content: "N+";
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    font-size: 120px;
+    color: rgba(255,255,255,0.05);
+    font-weight: bold;
+    pointer-events: none;
+}
+
+.homeProducts .banner2{
+    width: 100%;
+    border-radius: 10px;
+    overflow:hidden;
+}
+
+.text-light{
+    color: #858282 !important;
+}
+
+
+.productRow .hd{
+    font-size : 25px;
+}
+
+.ViewAllbtn{
+    padding: 8px 25px !important;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    border-radius: 30px !important;
+    color: #00000091 !important;
+    font-weight: 500 !important;
+    text-transform: capitalize !important;
+}
+
+
+.productRow .bannerSec{
+    margin-top: 20px;
+    margin-left: 50px;
+    gap : 40px ;
+}
+
+
+.newLetterSection{
+    width: 100%;
+    height : 400px ;
+    background: #629C38;
+    position: relative;
+    overflow: hidden;
+    padding: 70px 0px !important;
+}
+
+.newLetterSection p{
+    font-size: 18px;
+    margin: 10px 0px !important;
+}
+
+.newLetterSection h3{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.newLetterSection p.text-light{
+    color: #fff !important;
+    opacity: 0.5;
+    font-size: 18px;
+}
+
+.newLetterSection .col-md-6{
+    position: static !important;
+}
+
+.newLetterSection img{
+    position : absolute ;
+    bottom: 0px ;
+    right: 0px;
+}
+
+.newLetterSection form{
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    padding: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.newLetterSection form svg{
+    position: absolute;
+    top: 17px;
+    left: 10px;
+    font-size: 25px;
+    opacity: 0.3;
+}
+
+.newLetterSection form input{
+    width: 100%;
+    height: 100%;
+    background: #fff !important;
+    outline: none !important;
+    border: 0px !important;
+    padding-left: 40px;
+    padding-right: 200px;
+}
+
+.newLetterSection form button{
+    position : absolute ;
+    top: 6px;
+    right: 7px;
+    background: var(--primary-green) !important;
+    font-size: 14px !important;
+    padding: 12px 25px !important;
+    color: #fff !important;
+    text-transform: capitalize !important;
+    font-weight: 600 !important;
+
+}
+
+
+
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 991px) {
+    .homeProducts {
+        padding: 15px 10px;
+    }
+
+    .product_row{
+        background: #eceaea;
+    }
+
+    
+    .img-ad-banner-2 {
+        display: none !important;
+    }
+
+    .newLetterSection {
+        height: auto;
+        padding: 40px 0 !important;
+    }
+
+    .newLetterSection img {
+        display: none; /* Hide the big coupon image on tablets/mobile to save space */
+    }
+}
+
+@media (max-width: 767px) {
+    /* Stack the side banners on top of the products */
+    .col-md-3, .col-md-9 {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .homeProducts .banner{
+        display: none;
+    }
+
+    .info.w-75 {
+        width: 100% !important; /* Title takes full width */
+    }
+
+    .productRow .hd {
+        font-size: 20px;
+    }
+
+    .ViewAllbtn {
+        padding: 5px 15px !important;
+        font-size: 12px !important;
+    }
+
+    .newLetterSection form input {
+        padding-right: 120px; /* Adjust for smaller button */
+    }
+
+    .newLetterSection form button {
+        padding: 8px 15px !important;
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .newLetterSection h4 {
+        font-size: 22px;
+    }
+    
+    .newLetterSection form svg {
+        display: none; /* Hide icon to give input more room */
+    }
+    
+    .newLetterSection form input {
+        padding-left: 10px;
+    }
+    
+}

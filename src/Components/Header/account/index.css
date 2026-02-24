@@ -1,0 +1,124 @@
+/* Default (desktop) */
+.accountContainer{
+    padding: 10px !important;
+  }
+  
+  .accounticon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 65px !important;
+    height: 65px !important;
+    width: 65px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    color: #000 !important;
+  }
+  
+  .accounticon svg{
+    font-size: 30px;
+  }
+  
+  .price{
+    margin-left: 4px;
+    font-size: 13px;
+    height: 100%;
+    width: 70px;
+    margin-top: 10px;
+    color: rgba(0,0,0,0.8); /* fixed typo rba → rgba */
+    font-weight: 700;
+  }
+  
+  .basketicon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 65px !important;
+    height: 65px !important;
+    width: 65px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    color: #000;
+    background: #fff1ee !important;
+  }
+  
+  .basketicon svg{
+    font-size: 30px;
+    color: #ea2b0f;
+  }
+  
+  .count{
+    position: absolute;
+    top: 0px;
+    right: -4px;
+    background: #ea2b0f;
+    border-radius: 50%;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+  
+  
+  /* 📱 Tablets & small screens */
+  @media (max-width: 768px) {
+    .accountContainer{
+      padding: 6px !important;
+    }
+  
+    .accounticon{
+      min-width: 44px !important;
+      width: 44px !important;
+      height: 44px !important;
+    }
+  
+    .accounticon svg{
+      font-size: 24px;
+    }
+  
+    .price{
+      font-size: 12px;
+      width: 60px;
+      margin-top: 8px;
+    }
+  
+    .basketicon{
+      min-width: 40px !important;
+      width: 40px !important;
+      height: 40px !important;
+    }
+  
+    .basketicon svg{
+      font-size: 24px;
+    }
+  
+    .count{
+      width: 16px;
+      height: 16px;
+      font-size: 10px;
+    }
+  }
+  
+  
+  /* 📱 Very small screens */
+  @media (max-width: 480px) {
+    .price{
+      display: none; /* hide price to save space */
+    }
+  
+    .accounticon{
+      min-width: 40px !important;
+      width: 40px !important;
+      height: 40px !important;
+    }
+  
+    .basketicon{
+      min-width: 38px !important;
+      width: 38px !important;
+      height: 38px !important;
+    }
+  }
+  

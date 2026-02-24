@@ -1,0 +1,42 @@
+.productZoom {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f8f9fa; /* Matches our gray theme */
+    border: 1px solid #eee;
+}
+
+.zoomSliderBig .item {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    height: 400px; /* Fixed height for consistency */
+}
+
+/* Fix for the InnerImageZoom library to keep it contained */
+.iiz {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.iiz__img {
+    max-height: 380px !important;
+    object-fit: contain !important;
+}
+
+.zoomSlider .item {
+    padding: 0 5px;
+}
+
+.zoomSlider .item img {
+    height: 80px;
+    object-fit: contain;
+    background: #f8f9fa;
+    transition: 0.3s;
+}
+
+.zoomSlider .item img:hover {
+    border-color: #2ecc71 !important; /* Green highlight on hover */
+}

@@ -1,0 +1,40 @@
+.bg-light-success {
+    background-color: #f0fdf4;
+}
+
+.border-dashed {
+    border: 2px dashed #cbd5e1 !important;
+    transition: all 0.3s ease;
+}
+
+.upload-zone:hover {
+    border-color: #2ecc71 !important;
+    background-color: #f8fafc !important;
+}
+
+.custom-input {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.custom-input:focus {
+    background-color: #fff;
+    border-color: #2ecc71;
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.1);
+    outline: none;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(46, 204, 113, 0.2);
+}

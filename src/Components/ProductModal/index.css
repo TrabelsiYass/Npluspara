@@ -1,0 +1,96 @@
+/* Dialog Overrides */
+.ProductModal .MuiPaper-root {
+    padding: 30px !important;
+    border-radius: 15px !important;
+    max-width: 850px !important;
+    position: relative;
+    overflow-x: hidden !important;
+}
+
+.ProductModal .close_ {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    min-width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    background: #f1f1f1 !important;
+    color: #000 !important;
+    z-index: 100;
+}
+
+.ProductModal .close_:hover {
+    background: #ff4d4d !important;
+    color: #fff !important;
+}
+
+/* Typography */
+.product-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 5px;
+    padding-right: 40px; /* Space for close button */
+}
+
+.brand-label { color: #888; font-size: 14px; }
+.brand-name-text { color: #2ecc71; font-size: 14px; margin-left: 5px; }
+
+/* Prices */
+.newPrice.lg {
+    font-size: 28px;
+    font-weight: 800;
+    color: #2ecc71 !important;
+}
+
+.oldPrice.lg {
+    font-size: 18px;
+    color: #bbb;
+    text-decoration: line-through;
+}
+
+/* Stock Badge */
+.bg-success-light {
+    background-color: #e8f5e9 !important;
+    color: #2ecc71 !important;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.description-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.btn-green {
+    background-color: #2ecc71 !important;
+    color: #fff !important;
+    padding: 10px 25px !important;
+    font-weight: 700 !important;
+    border-radius: 30px !important;
+    text-transform: none !important;
+}
+
+.btn-green:hover {
+    background-color: #27ae60 !important;
+}
+
+.btn-wishlist {
+    color: #888 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    gap: 8px;
+    text-transform: none !important;
+}
+
+.btn-wishlist:hover {
+    color: #ff4d4d !important;
+}
+
+@media (max-width: 768px) {
+    .ProductModal .MuiPaper-root { padding: 20px !important; }
+    .newPrice.lg { font-size: 22px; }
+}

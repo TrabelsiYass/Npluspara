@@ -1,0 +1,32 @@
+.search-bar {
+  flex: 1;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary-green);
+  color: var(--white);
+  padding: 12px 20px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+  background-color: var(--dark-green);
+}

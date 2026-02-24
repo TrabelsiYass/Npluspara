@@ -1,0 +1,50 @@
+.top-bar {
+  background-color: #629C38;
+  color: var(--white);
+  padding: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.top-bar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blog-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.blog-link .icon {
+  font-size: 16px;
+}
+
+.delivery-message {
+  flex: 1;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scrolling-text {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.contact-link {
+  color: var(--white);
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,229 @@
+.RegionDrop{
+    margin: 30px !important;
+    width: 100px;
+    height: auto;
+    text-align: left;
+    justify-content: flex-start !important;
+    color: #000 !important;
+    border: 1px solid rgba(0,0,0,0.2) !important;
+    border-radius: 7px;
+    min-width: 120px !important;
+  }
+  
+  .label{
+    font-family: "Lato", sans-serif;
+    font-size: 12px !important;
+    color: rgba(0,0,0,0.3) !important;
+    line-height: 16px;
+  }
+  
+  .region{
+    font-family: "Lato", sans-serif;
+    font-size: 14px !important;
+    color: rgba(0,0,0,0.8) !important;
+    font-weight: 700;
+  }
+  
+  .Locationicon{
+    margin: 10px;
+  }
+  
+  /* *********** */
+
+
+  ::-webkit-scrollbar{width: 8px !important; height: 8px !important;}
+  ::-webkit-scrollbar-thumb{background: #ccc !important;}
+  ::-webkit-scrollbar-track{background: transparent !important;}
+
+  .locationModal .MuiPaper-elevation{
+    padding: 25px;
+    overflow-x: hidden;
+  }
+
+  .locationModal .close_icon{
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    color: #000 !important;
+    min-width: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+  }
+
+  .locationModal .close_icon svg{
+    font-size: 22px;
+  }
+
+  .locationModal .countryList{
+    margin-bottom: 0px;
+    max-height: 400px;
+    overflow-y: scroll;
+    padding: 15px 20px;
+    
+  }
+
+  .locationModal .countryList li{
+    width: 100%;
+    list-style: none;
+  }
+  .locationModal .countryList li button{
+    width: 100%;
+    text-transform: capitalize !important;
+    color: #000;
+    justify-content: flex-start !important;
+  }
+
+  .locationModal .countryList li button .active{
+    color: bisque;
+  }
+
+
+
+
+  
+  @media (max-width: 768px) {
+
+    .RegionDrop{
+      margin: 8px !important;
+      min-width: 95px !important;
+      padding: 6px 8px;
+    }
+  
+    .label{
+      font-size: 11px !important;
+    }
+  
+    .region{
+      font-size: 13px !important;
+    }
+  
+    .Locationicon{
+      margin: 6px;
+    }
+  
+    .locationModal .MuiPaper-elevation{
+      width: 92%;
+      max-width: 360px;      
+      max-height: 50vh;      
+      margin: auto;
+      padding: 14px;
+      border-radius: 12px;
+      overflow-y: auto;
+    }
+  
+    .locationModal h3{
+      font-size: 17px;
+    }
+  
+    .locationModal p{
+      font-size: 13px;
+    }
+  
+    .locationModal .close_icon{
+      width: 34px !important;
+      height: 34px !important;
+    }
+  
+    .locationModal .close_icon svg{
+      font-size: 18px;
+    }
+  
+    .locationModal .countryList{
+      max-height: 240px;
+      padding: 10px;
+    }
+  
+    .locationModal .countryList li button{
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .headerSearch{
+      height: 46px;
+      padding: 6px;
+    }
+  
+    .headerSearch input{
+      font-size: 14px;
+    }
+  
+  }
+  
+  
+    .locationModal h3{
+      font-size: 18px;
+    }
+  
+    .locationModal p{
+      font-size: 13px;
+    }
+  
+    .locationModal .close_icon{
+      top: 5px;
+      right: 5px;
+      width: 35px !important;
+      height: 35px !important;
+    }
+  
+    .locationModal .close_icon svg{
+      font-size: 18px;
+    }
+  
+    .locationModal .countryList{
+      max-height: 250px;
+      padding: 10px;
+    }
+  
+    .locationModal .countryList li button{
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .headerSearch{
+      height: 50px;
+      padding: 8px;
+    }
+  
+    .headerSearch input{
+      font-size: 14px;
+    }
+  
+
+  
+  
+    @media (max-width: 480px) {
+
+      .RegionDrop{
+        margin: 4px !important;
+        min-width: auto !important;
+        padding: 6px 10px;
+      }
+    
+      .label{
+        display: none;
+      }
+    
+      .region{
+        font-size: 12px !important;
+      }
+    
+      .Locationicon{
+        margin: 4px;
+      }
+    
+      .locationModal .MuiPaper-elevation{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding: 12px;
+      }
+    
+      .locationModal .countryList{
+        max-height: 200px;
+      }
+    
+    }
+    
+  

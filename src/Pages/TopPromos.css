@@ -1,0 +1,30 @@
+/* Grid Setup */
+.promos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+/* Scroll Reveal Logic */
+.promo-wrapper {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
+    height: 100%;
+}
+
+/* When the item enters the viewport */
+.promo-wrapper.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ensure the grid title looks like your other sections */
+.top-promos-section .hd {
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

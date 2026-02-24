@@ -1,0 +1,32 @@
+.admin-sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #1e293b;
+    color: #cbd5e1;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: #94a3b8;
+    text-decoration: none;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.sidebar-link:hover {
+    background-color: #334155;
+    color: #fff;
+}
+
+.sidebar-link.active {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.sidebar-link svg {
+    font-size: 20px;
+}

@@ -1,0 +1,103 @@
+/* Sidebar sizing for clear text */
+.sidebarWrapper {
+    width: 300px !important; /* Fixed width for text clarity */
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+}
+
+.sidebar_inner {
+    padding-right: 10px;
+}
+
+.sidebarOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500; /* Higher than header if necessary */
+}
+
+.sidebarOverlay.show {
+    display: block;
+}
+
+.mobileHeader {
+    display: none; 
+}
+
+.sticky {
+    position: sticky;
+    top: 20px;
+}
+
+.filterBox {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 15px;
+}
+
+.filterBox h6 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scroll ul li {
+    list-style: none;
+    width: 100%;
+}
+
+/* MUI Overrides to match your Green Theme */
+.css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root.Mui-checked {
+    color: #27ae60 !important; /* Changed from purple to green */
+}
+
+.MuiFormControlLabel-label {
+    font-size: 14px !important;
+    white-space: nowrap; /* Keeps text on one line */
+}
+
+/* Slider Colors */
+.MuiSlider-root {
+    color: #27ae60 !important;
+}
+
+/* Mobile Adjustments (Tablet & Phone) */
+@media (max-width: 992px) {
+    .sidebarWrapper {
+        position: fixed;
+        top: 0;
+        left: -320px; /* Hidden off-screen */
+        width: 300px !important;
+        height: 100vh;
+        z-index: 2000;
+        padding: 20px;
+        overflow-y: auto;
+        box-shadow: 5px 0px 15px rgba(0,0,0,0.1);
+    }
+
+    .sidebarWrapper.open {
+        left: 0; /* Slide in */
+    }
+
+    .mobileHeader {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .closeBtn {
+        color: #000 !important;
+    }
+}
