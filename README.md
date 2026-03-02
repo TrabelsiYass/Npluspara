@@ -154,8 +154,6 @@ Yassin Trabelsi
 Software Engineering Graduate
 Full Stack Developer
 
-LinkedIn: Add your link
-Portfolio: Add your link
 
 📜 License
 
