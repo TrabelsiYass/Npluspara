@@ -6,8 +6,7 @@ This project provides a complete online shopping solution including product mana
 
 🚀 Live Demo
 
-🔗 Add your deployed link here
-🔗 Add admin demo link (if available)
+🔗 http://localhost:3000/admin
 
 🧠 Tech Stack
 Frontend
@@ -94,7 +93,7 @@ order_items
 
 ⚙️ Installation & Setup
 1️⃣ Clone the repository
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/TrabelsiYass/your-repo-name.git
 cd your-repo-name
 2️⃣ Install dependencies
 npm install
