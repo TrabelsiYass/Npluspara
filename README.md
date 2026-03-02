@@ -1,70 +1,162 @@
-# Getting Started with Create React App
+🛒 E-Commerce Website – Full Stack (React + Supabase)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern full-stack e-commerce web application built with React.js for the frontend and Supabase for backend services (database, authentication, storage).
 
-## Available Scripts
+This project provides a complete online shopping solution including product management, authentication, admin dashboard, and order handling.
 
-In the project directory, you can run:
+🚀 Live Demo
 
-### `npm start`
+🔗 Add your deployed link here
+🔗 Add admin demo link (if available)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🧠 Tech Stack
+Frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+⚛️ React.js
 
-### `npm test`
+React Router
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Context API
 
-### `npm run build`
+TailwindCSS / CSS Modules
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Axios / Fetch API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Backend (BaaS)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+🟢 Supabase
 
-### `npm run eject`
+PostgreSQL Database
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Authentication
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Storage (Images upload)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Row Level Security (RLS)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+✨ Features
+👤 User Side
 
-## Learn More
+User Registration & Login
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Browse Products
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Filter & Search Products
 
-### Code Splitting
+Product Details Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Add to Cart
 
-### Analyzing the Bundle Size
+Checkout System
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Order History
 
-### Making a Progressive Web App
+🛠 Admin Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Secure Admin Login
 
-### Advanced Configuration
+Add / Edit / Delete Products
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Manage Categories & Subcategories
 
-### Deployment
+Upload Product Images
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+View & Manage Orders
 
-### `npm run build` fails to minify
+Dashboard Analytics Overview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+🔐 Authentication & Security
+
+Supabase Auth (Email/Password)
+
+Protected Routes
+
+Role-based access (Admin/User)
+
+Row Level Security policies in Supabase
+
+🗄 Database Schema (Simplified)
+
+Tables:
+
+users
+
+products
+
+categories
+
+subcategories
+
+orders
+
+order_items
+
+⚙️ Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+2️⃣ Install dependencies
+npm install
+3️⃣ Setup environment variables
+
+Create a .env file in root:
+
+REACT_APP_SUPABASE_URL=your_supabase_url
+REACT_APP_SUPABASE_ANON_KEY=your_anon_key
+4️⃣ Run the project
+npm start
+
+App runs on:
+
+http://localhost:3000
+📦 Build for Production
+npm run build
+🌍 Deployment
+
+Recommended platforms:
+
+Vercel
+
+Netlify
+
+Render
+
+📸 Screenshots
+
+Add screenshots here (Homepage, Product Page, Admin Dashboard, etc.)
+
+🎯 Project Goals
+
+Build a scalable e-commerce architecture
+
+Implement real-world authentication & database logic
+
+Practice full-stack integration using Supabase
+
+Deploy a production-ready application
+
+📈 Future Improvements
+
+Payment Gateway Integration (Stripe)
+
+Wishlist System
+
+Reviews & Ratings
+
+Email Notifications
+
+Advanced Analytics
+
+👨‍💻 Author
+
+Yassin Trabelsi
+Software Engineering Graduate
+Full Stack Developer
+
+LinkedIn: Add your link
+Portfolio: Add your link
+
+📜 License
+
+This project is open-source and available under the MIT License.
