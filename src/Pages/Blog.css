@@ -459,5 +459,28 @@
     .hero-image-wrapper { height: 350px; }
     .article-lead { font-size: 1.1rem; }
     .article-content-text { font-size: 1.1rem; }
+
+    
   
+}
+
+
+/* Mobile Optimization (Screens smaller than 768px) */
+@media (max-width: 768px) {
+  .filter-nav {
+    /* Allows items to wrap to a new line */
+    flex-wrap: wrap; 
+    /* Reduce gap so more items fit per row */
+    gap: 8px; 
+    padding-bottom: 15px;
+  }
+
+  .nav-filter-item {
+    /* Smaller font and padding for mobile fingers */
+    padding: 8px 12px;
+    font-size: 14px;
+    /* Optional: ensures items take up even space if you want a grid look */
+    flex-grow: 1; 
+    text-align: center;
+  }
 }

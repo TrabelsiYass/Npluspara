@@ -108,6 +108,9 @@ const Login = () => {
             <div className="strength-bar-container">
               <div className="strength-bar" style={{ width: `${getPasswordStrength()}%`, backgroundColor: getPasswordStrength() < 66 ? '#ff4757' : '#629C38' }}></div>
             </div>
+            <p className="toggle-link" onClick={() => setIsSignUp(false)}>
+              Déjà un compte ? <strong>Se connecter</strong>
+            </p>
             <button className="submit-btn" disabled={loading}>
               {loading ? "Chargement..." : "S'INSCRIRE"}
             </button>
@@ -136,6 +139,9 @@ const Login = () => {
               <input type={showPassword ? "text" : "password"} placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
             <span className="forgot-text">Mot de passe oublié ?</span>
+            <p className="toggle-link" onClick={() => setIsSignUp(true)}>
+              Vous n'avez pas de compte ? <strong>S'inscrire</strong>
+            </p>
             <button className="submit-btn" disabled={loading}>
               {loading ? "Chargement..." : "SE CONNECTER"}
             </button>

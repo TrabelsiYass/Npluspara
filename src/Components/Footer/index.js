@@ -38,8 +38,8 @@ function Footer() {
             <div className="footer-column">
               <h4>Service client</h4>
               <ul>
-                <li>Tél <a href="tel:+21670608000">+216 70 000 000</a></li>
-                <li>Email <a href="mailto:contact@pharma-shop.tn">contact@npluspara.tn</a></li>
+                <li>Tél <a href="tel:+21670608000">+216 28 895 920</a></li>
+                <li>Email <a href="mailto:contact@pharma-shop.tn">npluspara@gmail.com</a></li>
               </ul>
             </div>
           </div>

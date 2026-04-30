@@ -342,11 +342,63 @@
   cursor: pointer;
   margin-top: 20px;
 }
+.toggle-link {
+  display: none; /* Hidden on desktop */
+  text-align: center;
+  margin-top: 20px;
+  cursor: pointer;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .toggle-link { display: block; }
+}
   
   /* Responsive Detail */
   @media (max-width: 768px) {
-    .overlay-wrapper { display: none; }
-    .form-container { width: 100% !important; transform: none !important; }
-    .auth-container.right-panel-active .sign-in-container { display: none; }
-    .auth-container.right-panel-active .sign-up-container { opacity: 1; transform: none; width: 100%; }
+    /* 1. Reset the main container */
+    .auth-container {
+      display: flex;
+      flex-direction: column; /* Stack vertically */
+      height: auto !important;
+      min-height: auto !important;
+      overflow: visible !important;
+      width: 100%;
+    }
+  
+    /* 2. Make forms relative so they take up space */
+    .form-container {
+      position: relative !important; /* Fixes the 'disappearing' issue */
+      width: 100% !important;
+      height: auto !important;
+      padding: 40px 20px !important;
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      left: 0 !important;
+    }
+  
+    /* 3. Manage visibility */
+    /* Hide the form that isn't active */
+    .sign-in-container {
+      display: block; 
+    }
+    .sign-up-container {
+      display: none; 
+    }
+  
+    /* Toggle display when state changes */
+    .auth-container.right-panel-active .sign-in-container {
+      display: none !important;
+    }
+    .auth-container.right-panel-active .sign-up-container {
+      display: block !important;
+      z-index: 5;
+    }
+  
+    /* 4. Completely hide the desktop sliding overlay */
+    .overlay-wrapper, .overlay-container {
+      display: none !important;
+    }
   }

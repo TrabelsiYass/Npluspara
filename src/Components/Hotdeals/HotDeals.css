@@ -137,6 +137,6 @@
   }
   
   .bons-plans-banner {
-    min-height: 216px;
+    min-height: auto;
   }
 }

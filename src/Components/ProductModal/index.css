@@ -91,6 +91,50 @@
 }
 
 @media (max-width: 768px) {
-    .ProductModal .MuiPaper-root { padding: 20px !important; }
-    .newPrice.lg { font-size: 22px; }
+    /* Make the modal take up nearly the full width of the phone */
+    .ProductModal .MuiPaper-root { 
+        padding: 15px !important; 
+        margin: 10px !important; /* Prevents touching screen edges */
+        max-width: 95% !important; 
+        width: 100% !important;
+        max-height: 90vh !important; /* Ensures it doesn't overflow the screen height */
+        overflow-y: auto !important; /* Allows scrolling if content is long */
+    }
+
+    /* Adjust the Close button so it doesn't overlap text as much */
+    .ProductModal .close_ {
+        top: 10px;
+        right: 10px;
+        width: 35px !important;
+        height: 35px !important;
+    }
+
+    /* Shrink typography so it doesn't wrap awkwardly */
+    .product-title { 
+        font-size: 18px; 
+        padding-right: 35px; /* Adjust space for smaller close button */
+    }
+
+    .newPrice.lg { font-size: 20px; }
+    .oldPrice.lg { font-size: 14px; }
+
+    /* Make buttons full width for better "thumb" targets */
+    .btn-green {
+        width: 100% !important;
+        margin-top: 10px;
+        padding: 12px 0 !important; /* Taller for mobile tapping */
+    }
+
+    .btn-wishlist {
+        width: 100% !important;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    /* If you have an image and info side-by-side, force them to stack */
+    .ProductModal .MuiDialogContent-root {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0 !important;
+    }
 }
