@@ -29,6 +29,8 @@ import { CircularProgress } from "@mui/material";
 import ResetPassword from "./Pages/ResetPassword";
 import Paiement from "./Pages/Paiement";
 import Commandes from "./Pages/Admin/Commandes";
+// App.js - Add this near your other imports
+import FancyPreloader from './Components/FancyPreloader/index';
 
 const BlogPage = lazy(() => import('./Pages/BlogPage'));
 const BlogPostDetail = lazy(() => import('./Pages/BlogPostDetail'));
@@ -62,15 +64,8 @@ function App() {
    * logged-out state while Supabase is still thinking.
    */
   if (loading || session === undefined) {
-    return (
-      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh', background: '#f8f9fa' }}>
-        <div className="text-center">
-          <CircularProgress style={{ color: '#629C38' }} />
-          <p className="mt-3" style={{ color: '#629C38', fontWeight: '500' }}>Chargement...</p>
-        </div>
-      </div>
-    );
-  }
+    return <FancyPreloader />;
+  }
 
   return (
     <BrowserRouter>

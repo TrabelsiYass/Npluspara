@@ -1,0 +1,60 @@
+/* Components/FancyPreloader/index.css */
+.fancy-preloader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa; /* Your light background */
+    z-index: 10000; /* Stays above everything */
+    transition: opacity 0.5s ease; /* For smooth fade out */
+  }
+  
+  .loader-motion {
+    display: flex;
+    justify-content: space-around;
+    width: 60px;
+  }
+  
+  .loader-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #629C38; /* Your brand green */
+    animation: bounce 0.6s infinite alternate;
+  }
+  
+  .loader-circle:nth-child(2) {
+    animation-delay: 0.2s;
+    background-color: #558B2F; /* A slightly darker shade of your green */
+  }
+  
+  .loader-circle:nth-child(3) {
+    animation-delay: 0.4s;
+    background-color: #a4cf8a; /* A lighter shade for complexity */
+  }
+  
+  .loading-text {
+    margin-top: 25px;
+    color: #629C38;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Use your preferred font */
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes bounce {
+    to {
+      opacity: 0.3;
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
