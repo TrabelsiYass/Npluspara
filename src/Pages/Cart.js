@@ -3,9 +3,16 @@ import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useMyContext } from './MyContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = ({ closeCart }) => {
     const { cartItems, updateQty, removeItem } = useMyContext();
+    const navigate = useNavigate() ;
+
+    const handleCheckout = () => {
+        closeCart();
+        navigate('/paiement');
+    }
 
     const subtotal = cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0);
     const shipping = cartItems.length > 0 ? 7.000 : 0;
@@ -55,9 +62,13 @@ const Cart = ({ closeCart }) => {
                     </div>
                     <div className="d-flex justify-content-between mb-3">
                         <h5 className="mb-0 fw-bold">Total</h5>
-                        <h5 className="mb-0 fw-bold" style={{ color: '#00a372' }}>{total.toFixed(3)} TND</h5>
+                        <h5 className="mb-0 fw-bold" style={{ color: '#629C38' }}>{total.toFixed(3)} TND</h5>
                     </div>
-                    <Button variant="contained" fullWidth style={{ backgroundColor: '#00a372', borderRadius: '8px', padding: '10px' }}>
+                    <Button
+                        onClick={handleCheckout}
+                        variant="contained" 
+                        fullWidth 
+                        style={{ backgroundColor: '#629C38', borderRadius: '8px', padding: '10px' }}>
                         Passer à la caisse
                     </Button>
                 </div>

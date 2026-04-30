@@ -19,6 +19,10 @@ const ProductItem = (props) => {
     const navigate = useNavigate();
     const { addToCart } = useMyContext();
 
+    // CRITICAL: Determine the Master ID. 
+    // If item.product_id exists (from a promo table), use it. Otherwise, use item.id.
+    const actualProductId = item?.product_id || item?.id;
+
     const discount = item?.old_price && item?.new_price 
         ? Math.round(((item.old_price - item.new_price) / item.old_price) * 100) 
         : null;
@@ -26,23 +30,25 @@ const ProductItem = (props) => {
     useEffect(() => {
         const checkWishlist = async () => {
             const { data: { user } } = await supabase.auth.getUser();
-            if (user && item) {
+            if (user && actualProductId) {
                 const { data } = await supabase
                     .from('wishlist')
                     .select('*')
                     .eq('user_id', user.id)
-                    .eq('product_id', item.id)
+                    .eq('product_id', actualProductId) // Use Master ID
                     .maybeSingle();
                 if (data) setIsAddedToWishlist(true);
             }
         };
         checkWishlist();
-    }, [item]);
+    }, [actualProductId]);
 
     const handleAddToCart = async (e) => {
         e.stopPropagation();
         setIsAdding(true);
         try {
+            // We pass the item as is, but you could also fetch the master product 
+            // if your cart needs strict master-only data.
             await addToCart(item, 1);
             setIsAdding(false);
             setIsAdded(true);
@@ -64,11 +70,17 @@ const ProductItem = (props) => {
 
         if (!isAddedToWishlist) {
             setIsAddedToWishlist(true);
-            const { error } = await supabase.from('wishlist').insert([{ user_id: user.id, product_id: item.id }]);
+            const { error } = await supabase
+                .from('wishlist')
+                .insert([{ user_id: user.id, product_id: actualProductId }]); // Use Master ID
             if (error) setIsAddedToWishlist(false);
         } else {
             setIsAddedToWishlist(false);
-            const { error } = await supabase.from('wishlist').delete().eq('user_id', user.id).eq('product_id', item.id);
+            const { error } = await supabase
+                .from('wishlist')
+                .delete()
+                .eq('user_id', user.id)
+                .eq('product_id', actualProductId); // Use Master ID
             if (error) setIsAddedToWishlist(true);
         }
     };
@@ -79,7 +91,11 @@ const ProductItem = (props) => {
         <>
             <div className={`productItem ${itemView}`}>
                 <div className="imgWrapper">
-                    <div className="img-container" onClick={() => navigate(`/product/${item.id}`)} style={{cursor: 'pointer'}}>
+                    <div 
+                        className="img-container" 
+                        onClick={() => navigate(`/product/${actualProductId}`)} // Always navigate to Master ID
+                        style={{cursor: 'pointer'}}
+                    >
                         <img src={item.image_url} alt={item.name} className="w-100" />
                         {discount > 0 && <span className="badge">-{discount}%</span>}
                     </div>
@@ -99,69 +115,63 @@ const ProductItem = (props) => {
                 </div>
 
                 <div className="info_prod">
+                    <span className="brand-name">{item.brand}</span>
 
-  {/* Brand */}
-  <span className="brand-name">{item.brand}</span>
+                    <h4
+                        className="product-title"
+                        onClick={() => navigate(`/product/${actualProductId}`)} // Always navigate to Master ID
+                    >
+                        {item.name}
+                    </h4>
 
-  {/* Name */}
-  <h4
-    className="product-title"
-    onClick={() => navigate(`/product/${item.id}`)}
-  >
-    {item.name}
-  </h4>
+                    <p className="short-desc">
+                        {item.description?.substring(0, 70)}...
+                    </p>
 
-  {/* Short Description */}
-  <p className="short-desc">
-    {item.description?.substring(0, 70)}...
-  </p>
+                    <div className="rating-row">
+                        <Rating value={4.8} precision={0.1} readOnly />
+                        <span className="fw-bold">4.8</span>
+                    </div>
 
-  {/* Rating */}
-  <div className="rating-row">
-    <Rating value={4} size="small" readOnly />
-    <span className="rating-text">(4.0)</span>
-  </div>
+                    <div className="product-prices">
+                        <span className="newPrice">
+                            {Number(item.new_price || item.price).toFixed(3)} TND
+                        </span>
 
-  {/* Prices */}
-  <div className="product-prices">
-    <span className="newPrice">
-      {Number(item.new_price || item.price).toFixed(3)} TND
-    </span>
+                        {item.old_price && (
+                            <span className="oldPrice">
+                                {Number(item.old_price).toFixed(3)} TND
+                            </span>
+                        )}
+                    </div>
 
-    {item.old_price && (
-      <span className="oldPrice">
-        {Number(item.old_price).toFixed(3)} TND
-      </span>
-    )}
-  </div>
+                    <div className={`stock ${item.stock > 0 ? "in" : "out"}`}>
+                        {item.stock > 0 ? "En stock" : "Rupture de stock"}
+                    </div>
 
-  {/* Stock */}
-  <div className={`stock ${item.stock > 0 ? "in" : "out"}`}>
-    {item.stock > 0 ? "En stock" : "Rupture de stock"}
-  </div>
-
-  {/* Add to Cart */}
-  <button
-    className={`add-to-cart-btn ${isAdded ? 'success' : ''}`}
-    onClick={handleAddToCart}
-    disabled={isAdding || item.stock === 0}
-  >
-    {isAdding ? (
-      <CircularProgress size={16} color="inherit" />
-    ) : isAdded ? (
-      <MdCheck />
-    ) : item.stock > 0 ? (
-      "Ajouter"
-    ) : (
-      "Indisponible"
-    )}
-  </button>
-
-</div>
+                    <button
+                        className={`add-to-cart-btn ${isAdded ? 'success' : ''}`}
+                        onClick={handleAddToCart}
+                        disabled={isAdding || item.stock === 0}
+                    >
+                        {isAdding ? (
+                            <CircularProgress size={16} color="inherit" />
+                        ) : isAdded ? (
+                            <MdCheck />
+                        ) : item.stock > 0 ? (
+                            "Ajouter"
+                        ) : (
+                            "Indisponible"
+                        )}
+                    </button>
+                </div>
             </div>
 
             {isOpenProductModal && (
-                <ProductModal product={item} closeProductModal={() => setisOpenProductModal(false)} />
+                <ProductModal 
+                    product={item} 
+                    closeProductModal={() => setisOpenProductModal(false)} 
+                />
             )}
         </>
     );

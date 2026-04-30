@@ -1,6 +1,6 @@
-import { Button, Checkbox, FormControlLabel, IconButton, Slider } from '@mui/material';
+import { Checkbox, FormControlLabel, IconButton, Slider, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { MdClose } from 'react-icons/md';
+import { MdClose, MdRestartAlt } from 'react-icons/md';
 import { supabase } from '../../Client';
 import "./index.css";
 
@@ -8,16 +8,15 @@ const Sidebar = ({ setFilters, closeSidebar, categorySlug, subCategorySlug, isOp
     const [brands, setBrands] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
     const [price, setPrice] = useState([0, 2000]);
-    const [selectedBrand, setSelectedBrand] = useState('');
-    const [selectedSubCatId, setSelectedSubCatId] = useState('');
+    const [selectedBrands, setSelectedBrands] = useState([]);
+    const [selectedSubCatIds, setSelectedSubCatIds] = useState([]);
 
+    // Fetch initial filter data
     useEffect(() => {
         let active = true;
-        
         const getFilterData = async () => {
             if (!categorySlug) return;
 
-            // 1. Fetch Sub-Categories for the current category
             const { data: subData } = await supabase
                 .from('sub_categories')
                 .select('id, name, slug, categories!inner(slug)')
@@ -25,17 +24,12 @@ const Sidebar = ({ setFilters, closeSidebar, categorySlug, subCategorySlug, isOp
 
             if (subData && active) {
                 setSubCategories(subData);
-
-                // Sync with URL: if a subCategorySlug exists in URL, check that box
                 if (subCategorySlug) {
                     const currentSub = subData.find(s => s.slug === subCategorySlug);
-                    if (currentSub) setSelectedSubCatId(currentSub.id);
-                } else {
-                    setSelectedSubCatId('');
+                    if (currentSub) setSelectedSubCatIds([currentSub.id]);
                 }
             }
 
-            // 2. Fetch unique brands available in this category
             const { data: productData } = await supabase
                 .from('products')
                 .select('brand, categories!inner(slug)')
@@ -51,133 +45,115 @@ const Sidebar = ({ setFilters, closeSidebar, categorySlug, subCategorySlug, isOp
         return () => { active = false; };
     }, [categorySlug, subCategorySlug]);
 
-    const handleApply = () => {
-        setFilters(prev => ({
-            ...prev,
-            brand: selectedBrand,
-            subCategoryId: selectedSubCatId,
+    // AUTO-UPDATE: This triggers the live display of products
+    useEffect(() => {
+        setFilters({
+            brand: selectedBrands,
+            subCategoryId: selectedSubCatIds,
             priceRange: price
-        }));
-        // Close sidebar only on mobile after applying
-        if (window.innerWidth < 992 && closeSidebar) closeSidebar();
+        });
+    }, [selectedBrands, selectedSubCatIds, price, setFilters]);
+
+    const handleToggleBrand = (brand) => {
+        setSelectedBrands(prev => 
+            prev.includes(brand) ? prev.filter(b => b !== brand) : [...prev, brand]
+        );
+    };
+
+    const handleToggleSubCat = (id) => {
+        setSelectedSubCatIds(prev => 
+            prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+        );
     };
 
     const handleReset = () => {
-        setSelectedBrand('');
-        setSelectedSubCatId('');
+        setSelectedBrands([]);
+        setSelectedSubCatIds([]);
         setPrice([0, 2000]);
-        setFilters({ brand: '', subCategoryId: '', priceRange: [0, 2000] });
-        if (window.innerWidth < 992 && closeSidebar) closeSidebar();
     };
 
     return (
         <>
-            {/* Mobile Overlay */}
             <div className={`sidebarOverlay ${isOpen ? "show" : ""}`} onClick={closeSidebar}></div>
             
-            <div className={`sidebarWrapper ${isOpen ? "open" : ""}`}>
-                <div className="sidebar_sticky">
-                    <div className="mobileHeader d-lg-none d-flex justify-content-between align-items-center mb-3">
-                        <h5 className="fw-bold m-0">Filtrer par</h5>
-                        <IconButton className="closeBtn" onClick={closeSidebar}><MdClose /></IconButton>
+            <aside className={`sidebarWrapper ${isOpen ? "open" : ""}`}>
+                <div className="sidebarHeader">
+                    <Typography variant="h6" className="fw-bold m-0" style={{color: '#1e293b'}}>Filtrer</Typography>
+                    <div className="d-flex align-items-center gap-1">
+                        <IconButton size="small" onClick={handleReset} title="Reset">
+                            <MdRestartAlt size={20} />
+                        </IconButton>
+                        <IconButton className="d-lg-none" onClick={closeSidebar}>
+                            <MdClose />
+                        </IconButton>
+                    </div>
+                </div>
+
+                <div className="sidebar_inner">
+                    <div className="filterBox">
+                        <Typography className="filterTitle">Sous-Catégories</Typography>
+                        <div className="customScroll">
+                            {subCategories.map(sub => (
+                                <FormControlLabel
+                                    key={sub.id}
+                                    className="filterItem"
+                                    control={
+                                        <Checkbox 
+                                            size="small" 
+                                            color="success"
+                                            checked={selectedSubCatIds.includes(sub.id)} 
+                                            onChange={() => handleToggleSubCat(sub.id)} 
+                                        />
+                                    }
+                                    label={sub.name}
+                                />
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="sidebar_inner">
-                        {/* Sub-Categories Section */}
-                        <div className="filterBox">
-                            <h6 className="fw-bold text-uppercase border-bottom pb-2">Sous-Catégories</h6>
-                            <div className="scroll">
-                                <ul className="p-0 m-0">
-                                    {subCategories.map(sub => (
-                                        <li key={sub.id}>
-                                            <FormControlLabel
-                                                className="w-100"
-                                                control={
-                                                    <Checkbox 
-                                                        size="small" 
-                                                        color="success"
-                                                        checked={selectedSubCatId === sub.id} 
-                                                        onChange={() => setSelectedSubCatId(sub.id === selectedSubCatId ? '' : sub.id)} 
-                                                    />
-                                                }
-                                                label={sub.name}
-                                            />
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Brands Section */}
-                        <div className="filterBox">
-                            <h6 className="fw-bold text-uppercase border-bottom pb-2">Marques</h6>
-                            <div className="scroll">
-                                <ul className="p-0 m-0">
-                                    {brands.map(brand => (
-                                        <li key={brand}>
-                                            <FormControlLabel
-                                                className="w-100"
-                                                control={
-                                                    <Checkbox 
-                                                        size="small" 
-                                                        color="success"
-                                                        checked={selectedBrand === brand} 
-                                                        onChange={() => setSelectedBrand(brand === selectedBrand ? '' : brand)} 
-                                                    />
-                                                }
-                                                label={brand}
-                                            />
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
-
-                        {/* Price Section */}
-                        <div className="filterBox">
-                            <h6 className="fw-bold text-uppercase border-bottom pb-2">Prix (TND)</h6>
-                            <div className="px-2 mt-4">
-                                <Slider 
-                                    value={price} 
-                                    onChange={(e, newValue) => setPrice(newValue)} 
-                                    valueLabelDisplay="on" 
-                                    min={0} 
-                                    max={2000} 
-                                    sx={{ 
-                                        color: '#27ae60',
-                                        '& .MuiSlider-valueLabel': { backgroundColor: '#27ae60' }
-                                    }}
+                    <div className="filterBox">
+                        <Typography className="filterTitle">Marques</Typography>
+                        <div className="customScroll">
+                            {brands.map(brand => (
+                                <FormControlLabel
+                                    key={brand}
+                                    className="filterItem"
+                                    control={
+                                        <Checkbox 
+                                            size="small" 
+                                            color="success"
+                                            checked={selectedBrands.includes(brand)} 
+                                            onChange={() => handleToggleBrand(brand)} 
+                                        />
+                                    }
+                                    label={brand}
                                 />
-                                <div className="d-flex justify-content-between mt-2">
-                                    <small className="fw-bold">{price[0]} TND</small>
-                                    <small className="fw-bold">{price[1]} TND</small>
-                                </div>
-                            </div>
+                            ))}
                         </div>
+                    </div>
 
-                        {/* Action Buttons */}
-                        <div className="d-grid gap-2 mt-4">
-                            <Button 
-                                variant="contained" 
-                                className="rounded-pill py-2 shadow-none" 
-                                style={{ backgroundColor: '#27ae60' }}
-                                onClick={handleApply}
-                            >
-                                Appliquer les filtres
-                            </Button>
-                            <Button 
-                                variant="outlined" 
-                                color="inherit" 
-                                size="small" 
-                                className="rounded-pill"
-                                onClick={handleReset}
-                            >
-                                Réinitialiser
-                            </Button>
+                    <div className="filterBox border-0">
+                        <Typography className="filterTitle">Prix (TND)</Typography>
+                        <div className="px-3 mt-4">
+                            <Slider 
+                                value={price} 
+                                onChange={(e, newValue) => setPrice(newValue)} 
+                                valueLabelDisplay="auto" 
+                                min={0} 
+                                max={2000} 
+                                sx={{ 
+                                    color: '#629C38',
+                                    '& .MuiSlider-thumb': { height: 18, width: 18, backgroundColor: '#fff', border: '2px solid currentColor' }
+                                }}
+                            />
+                            <div className="d-flex justify-content-between mt-2">
+                                <span className="priceTag">{price[0]} TND</span>
+                                <span className="priceTag">{price[1]} TND</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </aside>
         </>
     );
 };

@@ -3,7 +3,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination'; // Added pagination CSS
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'; // Added Pagination
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { default as banner3, default as banner4, default as banner5 } from '../../assets/images/Banneree.png';
+import banner5 from '../../assets/images/banner7.png';
+import banner4 from '../../assets/images/banner5.png';
+import banner3 from '../../assets/images/banner6.png';
 import './index.css';
 
 const HomeBanner = () => {

@@ -1,253 +1,279 @@
-.cursor{
+/* --- GLOBAL UTILITIES --- */
+.cursor {
     cursor: pointer;
+}
+
+.text-light {
+    color: #858282 !important;
+}
+
+/* --- HOME PRODUCTS SECTION --- */
+.homeProducts {
+    padding: 40px 0;
+    width: 100%;
+    background-color: #fcfcfc;
 }
 
 .homeProducts .container {
     max-width: 100% !important;
-    padding: 0 15px;
+    padding: 0 30px;
 }
 
-
-
-.img-ad-banner-2 {
-    
-    width: 100% !important;
-    height: 100% !important; 
-    border-radius: 10px;
-}
-
-.homeProducts{
-    padding: 25px 20px;
-    width: 100%;
-}
-
-
-
-
+/* --- SIDE BANNERS (Desktops) --- */
 .homeProducts .banner {
     width: 100%;
-    min-height: 480px; /* Adjust to match your Swiper height */
-    border-radius: 10px;
+    min-height: 480px;
+    border-radius: 12px;
     overflow: hidden;
     position: relative;
-    
-    /* Elegant Green Gradient */
-    background: linear-gradient(180deg, #27ae60 0%, #6bad3c 100%);
-    
-    /* Subtle texture to make the gradient look premium */
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(39, 173, 35, 0.89) 0%, transparent 80%),
-        radial-gradient(at 100% 100%, rgba(0,0,0,0.05) 0%, transparent 50%);
-    
+    background: url(../assets/images/bonplan2.png)  no-repeat center center  ; 
+    background-size: cover;;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 25px;
     text-align: center;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 
+/* Custom Backgrounds for different categories */
+.homeProducts .cheveux-bg { background: url(../assets/images/bonplan3.png) no-repeat center center  ; 
+background-size: cover;}
+.homeProducts .coffret-bg { background: url(../assets/images/bonplan4.png)  no-repeat center center  ; 
+    background-size: cover; }
 
 .homeProducts .banner:hover {
+    transform: translateY(-5px);
     filter: brightness(1.05);
 }
 
-
+/* Decorative background text */
 .homeProducts .banner::before {
-    content: "N+";
     position: absolute;
-    top: -20px;
+    top: -10px;
     right: -10px;
-    font-size: 120px;
-    color: rgba(255,255,255,0.05);
-    font-weight: bold;
+    font-size: 100px;
+    color: rgba(255,255,255,0.07);
+    font-weight: 900;
     pointer-events: none;
 }
 
-.homeProducts .banner2{
-    width: 100%;
-    border-radius: 10px;
-    overflow:hidden;
+
+.banner-inner h3 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
 }
 
-.text-light{
-    color: #858282 !important;
-}
-
-
-.productRow .hd{
-    font-size : 25px;
-}
-
-.ViewAllbtn{
-    padding: 8px 25px !important;
+.banner-inner .divider {
+    height: 3px;
+    width: 40px;
     background: #fff;
-    border: 1px solid rgba(0,0,0,0.1) !important;
-    border-radius: 30px !important;
-    color: #00000091 !important;
-    font-weight: 500 !important;
-    text-transform: capitalize !important;
+    margin: 20px auto;
+    border-radius: 10px;
 }
 
-
-.productRow .bannerSec{
-    margin-top: 20px;
-    margin-left: 50px;
-    gap : 40px ;
+.banner-inner p {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+    font-weight: 500;
 }
 
+.banner-inner button {
+    margin-top: 30px;
+    background: #fff;
+    color: #27ae60;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
 
-.newLetterSection{
+.banner-inner button:hover {
+    background: #222;
+    color: #fff;
+}
+
+/* --- PRODUCT ROWS --- */
+.productRow {
+    padding-left: 20px;
+}
+
+.productRow .hd {
+    font-size: 25px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+/* --- NEWSLETTER SECTION --- */
+.newLetterSection {
     width: 100%;
-    height : 400px ;
+    min-height: 380px;
     background: #629C38;
     position: relative;
     overflow: hidden;
-    padding: 70px 0px !important;
+    padding: 60px 0 !important;
+    display: flex;
+    align-items: center;
 }
 
-.newLetterSection p{
-    font-size: 18px;
-    margin: 10px 0px !important;
+.newLetterSection .promo-tag {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-bottom: 15px;
 }
 
-.newLetterSection h3{
-    font-size: 30px;
-    font-weight: bold;
+.newLetterSection h4 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 10px;
 }
 
-.newLetterSection p.text-light{
-    color: #fff !important;
-    opacity: 0.5;
-    font-size: 18px;
+.newLetterSection .desc {
+    color: rgba(255,255,255,0.8) !important;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 30px;
 }
 
-.newLetterSection .col-md-6{
-    position: static !important;
-}
-
-.newLetterSection img{
-    position : absolute ;
-    bottom: 0px ;
-    right: 0px;
-}
-
-.newLetterSection form{
+.newLetterSection .newsletter-form {
     width: 100%;
+    max-width: 500px;
     height: 60px;
     background: #fff;
-    padding: 10px;
+    padding: 6px;
     position: relative;
-    border-radius: 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-.newLetterSection form svg{
+.newLetterSection .newsletter-form svg {
     position: absolute;
-    top: 17px;
-    left: 10px;
-    font-size: 25px;
-    opacity: 0.3;
+    left: 15px;
+    font-size: 22px;
+    color: #629C38;
 }
 
-.newLetterSection form input{
+.newLetterSection .newsletter-form input {
     width: 100%;
     height: 100%;
-    background: #fff !important;
-    outline: none !important;
-    border: 0px !important;
-    padding-left: 40px;
-    padding-right: 200px;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding-left: 50px;
+    padding-right: 140px;
+    font-size: 15px;
 }
 
-.newLetterSection form button{
-    position : absolute ;
-    top: 6px;
-    right: 7px;
-    background: var(--primary-green) !important;
-    font-size: 14px !important;
-    padding: 12px 25px !important;
+.newLetterSection .newsletter-form button {
+    position: absolute;
+    right: 6px;
+    height: 48px;
+    background: #629C38 !important;
+    border: none;
+    border-radius: 8px;
     color: #fff !important;
-    text-transform: capitalize !important;
-    font-weight: 600 !important;
-
+    padding: 0 25px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 13px !important;
 }
 
+.newLetterSection .newsletter-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform: scale(1.1);
+    transform-origin: bottom right;
+}
 
+/* --- RESPONSIVE MODES --- */
 
+/* TABLETS & SMALL DESKTOPS (Max 1200px) */
+@media (max-width: 1200px) {
+    .homeProducts .container { padding: 0 15px; }
+    .productRow { padding-left: 10px; }
+}
 
-/* --- Responsive Adjustments --- */
-
+/* SMALL TABLETS (Max 991px) */
 @media (max-width: 991px) {
-    .homeProducts {
-        padding: 15px 10px;
-    }
+    .homeProducts .banner { min-height: 400px; }
+    .newLetterSection h4 { font-size: 28px; }
+    .newLetterSection .newsletter-img { transform: scale(1); }
+}
 
-    .product_row{
-        background: #eceaea;
-    }
-
+/* MOBILE LANDSCAPE (Max 767px) */
+@media (max-width: 767px) {
+    .homeProducts { padding: 20px 0; }
     
-    .img-ad-banner-2 {
+    /* Hide the side banners on mobile to let products breathe */
+    .homeProducts .col-md-2 {
         display: none !important;
     }
-
-    .newLetterSection {
-        height: auto;
-        padding: 40px 0 !important;
-    }
-
-    .newLetterSection img {
-        display: none; /* Hide the big coupon image on tablets/mobile to save space */
-    }
-}
-
-@media (max-width: 767px) {
-    /* Stack the side banners on top of the products */
-    .col-md-3, .col-md-9 {
-        width: 100%;
+    
+    .col-md-10 {
+        width: 100% !important;
         flex: 0 0 100%;
         max-width: 100%;
     }
 
-    .homeProducts .banner{
-        display: none;
+    .productRow { padding-left: 0; }
+
+    .newLetterSection {
+        text-align: center;
+        padding: 40px 15px !important;
     }
 
-    .info.w-75 {
-        width: 100% !important; /* Title takes full width */
+    .newLetterSection .newsletter-form {
+        margin: 0 auto;
     }
 
-    .productRow .hd {
-        font-size: 20px;
+    .newLetterSection .newsletter-img {
+        display: none; /* Hide coupon image on mobile */
     }
 
-    .ViewAllbtn {
-        padding: 5px 15px !important;
-        font-size: 12px !important;
-    }
-
-    .newLetterSection form input {
-        padding-right: 120px; /* Adjust for smaller button */
-    }
-
-    .newLetterSection form button {
-        padding: 8px 15px !important;
-        font-size: 12px !important;
+    .newsletter-form button {
+        padding: 0 15px !important;
+        font-size: 11px !important;
     }
 }
 
+/* SMALL MOBILE (Max 480px) */
 @media (max-width: 480px) {
-    .newLetterSection h4 {
-        font-size: 22px;
-    }
+    .newLetterSection h4 { font-size: 24px; }
     
-    .newLetterSection form svg {
-        display: none; /* Hide icon to give input more room */
+    .newLetterSection .newsletter-form {
+        height: 55px;
     }
-    
-    .newLetterSection form input {
-        padding-left: 10px;
+
+    .newLetterSection .newsletter-form input {
+        padding-right: 110px;
+        font-size: 13px;
     }
-    
+
+    .newLetterSection .newsletter-form svg {
+        display: none; /* More space for input on tiny screens */
+    }
+
+    .newLetterSection .newsletter-form input {
+        padding-left: 15px;
+    }
 }

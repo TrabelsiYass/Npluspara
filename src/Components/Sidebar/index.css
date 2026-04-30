@@ -1,12 +1,113 @@
-/* Sidebar sizing for clear text */
 .sidebarWrapper {
-    width: 300px !important; /* Fixed width for text clarity */
-    transition: all 0.3s ease-in-out;
-    background: #fff;
+    width: 280px;
+    background: #ffffff;
+    border-right: 1px solid #edf2f7;
+    height: fit-content;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sidebar_inner {
-    padding-right: 10px;
+.sidebarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.filterBox {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f8fafc;
+}
+
+.filterTitle {
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #475569;
+    margin-bottom: 12px !important;
+}
+
+.filterItem {
+    width: 100%;
+    margin: 0 !important;
+    transition: background 0.2s;
+    border-radius: 6px;
+}
+
+.filterItem:hover {
+    background: #f0fff4;
+}
+
+.filterItem .MuiFormControlLabel-label {
+    font-size: 14px !important;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* Custom Scrollbar for a "brilliant" look */
+.customScroll {
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.customScroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.customScroll::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+
+.customScroll::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.customScroll::-webkit-scrollbar-thumb:hover {
+    background: #27ae60;
+}
+
+.priceLabel {
+    font-size: 12px;
+    font-weight: 700;
+    color: #27ae60;
+    background: #ebfbee;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.applyBtn {
+    background: #27ae60 !important;
+    border-radius: 8px !important;
+    text-transform: none !important;
+    font-weight: 600 !important;
+    padding: 10px !important;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.2) !important;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 992px) {
+    .sidebarWrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-105%);
+        height: 100vh;
+        z-index: 2000;
+        width: 300px !important;
+        border-radius: 0;
+    }
+
+    .sidebarWrapper.open {
+        transform: translateX(0);
+    }
 }
 
 .sidebarOverlay {
@@ -14,90 +115,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1500; /* Higher than header if necessary */
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1999;
 }
 
 .sidebarOverlay.show {
     display: block;
-}
-
-.mobileHeader {
-    display: none; 
-}
-
-.sticky {
-    position: sticky;
-    top: 20px;
-}
-
-.filterBox {
-    margin-bottom: 30px;
-    border-bottom: 1px solid #f1f1f1;
-    padding-bottom: 15px;
-}
-
-.filterBox h6 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.scroll {
-    max-height: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.scroll ul li {
-    list-style: none;
-    width: 100%;
-}
-
-/* MUI Overrides to match your Green Theme */
-.css-vuhw6e-MuiButtonBase-root-MuiSwitchBase-root-MuiCheckbox-root.Mui-checked {
-    color: #27ae60 !important; /* Changed from purple to green */
-}
-
-.MuiFormControlLabel-label {
-    font-size: 14px !important;
-    white-space: nowrap; /* Keeps text on one line */
-}
-
-/* Slider Colors */
-.MuiSlider-root {
-    color: #27ae60 !important;
-}
-
-/* Mobile Adjustments (Tablet & Phone) */
-@media (max-width: 992px) {
-    .sidebarWrapper {
-        position: fixed;
-        top: 0;
-        left: -320px; /* Hidden off-screen */
-        width: 300px !important;
-        height: 100vh;
-        z-index: 2000;
-        padding: 20px;
-        overflow-y: auto;
-        box-shadow: 5px 0px 15px rgba(0,0,0,0.1);
-    }
-
-    .sidebarWrapper.open {
-        left: 0; /* Slide in */
-    }
-
-    .mobileHeader {
-        display: flex;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
-    }
-
-    .closeBtn {
-        color: #000 !important;
-    }
 }

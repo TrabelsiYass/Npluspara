@@ -1,81 +1,68 @@
-import { Button, CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
-import { IoArrowRedoOutline } from "react-icons/io5";
-import { Navigation } from 'swiper/modules';
+import React, { useEffect, useState } from 'react';
+import { CircularProgress } from "@mui/material";
+import { Navigation, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { supabase } from '../../Client';
 import ProductItem from "../ProductItem/index";
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-const RelatedProduct = ({ category, currentProductId }) => {
+const RelatedProduct = ({ categoryId, currentProductId }) => {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchRelatedProducts = async () => {
+            if (!categoryId) return;
             setLoading(true);
             try {
+                // Fetch products from the main table sharing the same category ID
                 const { data, error } = await supabase
                     .from('products')
                     .select('*')
-                    .eq('category_name', category) // Filtre par catégorie
-                    .neq('id', currentProductId)   // Exclut le produit actuel
-                    .limit(10);                    // Limite à 10 résultats
+                    .eq('cat_id', categoryId) 
+                    .neq('id', currentProductId) // Exclude current product
+                    .limit(10);
 
                 if (error) throw error;
                 setRelatedProducts(data || []);
-            } catch (error) {
-                console.error("Erreur Related Products:", error.message);
+            } catch (err) {
+                console.error("Related fetch error:", err);
             } finally {
                 setLoading(false);
             }
         };
 
-        if (category) {
-            fetchRelatedProducts();
-        }
-    }, [category, currentProductId]);
+        fetchRelatedProducts();
+    }, [categoryId, currentProductId]);
 
-    if (loading) return <div className="text-center p-4"><CircularProgress size={30} /></div>;
-    
-    // Ne pas afficher la section s'il n'y a pas de produits similaires
+    if (loading) return <div className="text-center p-5"><CircularProgress size={30} /></div>;
     if (relatedProducts.length === 0) return null;
 
     return (
         <div className="relatedProductsWrapper mt-5">
-            <div className="d-flex align-items-center mb-3">
-                <div className="info w-75">
-                    <h3 className="mb-0 hd">PRODUCTEURS SIMILAIRES</h3>
-                </div>
-                <Button className="ViewAllbtn ml-auto">
-                    Voir Tout <IoArrowRedoOutline className="ms-1" />
-                </Button>
-            </div>
-
-            <div className="product_row w-100">
-                <Swiper
-                    slidesPerView={1}
-                    spaceBetween={10}
-                    navigation={true}
-                    breakpoints={{
-                        480: { slidesPerView: 2 },
-                        768: { slidesPerView: 3 },
-                        1024: { slidesPerView: 4 },
-                        1400: { slidesPerView: 5 }
-                    }}
-                    modules={[Navigation]}
-                    className="mySwiper"
-                >
-                    {relatedProducts.map((item) => (
-                        <SwiperSlide key={item.id}>
-                            <ProductItem item={item} />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>    
-            </div>
+            <h3 className="mb-4 fw-bold text-uppercase">Produits Similaires</h3>
+            <Swiper
+                slidesPerView={1}
+                spaceBetween={20}
+                navigation={true}
+                autoplay={{ delay: 3500 }}
+                breakpoints={{
+                    480: { slidesPerView: 2 },
+                    768: { slidesPerView: 3 },
+                    1024: { slidesPerView: 4 },
+                    1400: { slidesPerView: 5 }
+                }}
+                modules={[Navigation, Autoplay]}
+                className="relatedSwiper"
+            >
+                {relatedProducts.map((item) => (
+                    <SwiperSlide key={item.id}>
+                        <ProductItem item={item} />
+                    </SwiperSlide>
+                ))}
+            </Swiper>    
         </div>
     );
 }

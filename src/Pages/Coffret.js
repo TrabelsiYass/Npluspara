@@ -12,40 +12,42 @@ const CoffretSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-    const fetchCoffrets = async () => {
-        try {
-            setLoading(true);
-            
-            // On sélectionne dans la table 'products'
-            // On joint la table 'categories' pour filtrer sur le nom
-            const { data, error } = await supabase
-                .from('products') 
-                .select(`
-                    *,
-                    categories!inner (
-                        name
-                    )
-                `)
-                .eq('categories.name', 'Coffrets') // Filtre précis sur le nom
-                .order('id', { ascending: true });
+        const controller = new AbortController();
+        let isMounted = true;
+    
+        const fetchData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('products')
+                    .select('*')
+                    .eq('cat_id', 4)
+                    .abortSignal(controller.signal);
+    
+                if (error) throw error;
+                if (isMounted) setCoffrets(data || []);
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    console.error('Fetch Error:', error.message);
+                }
+            } finally {
+                if (isMounted) setLoading(false);
+            }
+        };
+    
+        fetchData();
+    
+        return () => {
+            isMounted = false;
+            controller.abort();
+        };
+    }, []);
 
-            if (error) throw error;
-            setCoffrets(data || []);
-        } catch (error) {
-            console.error('Supabase Error:', error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    fetchCoffrets();
-}, []);
 
     if (loading) {
         return (
             <div className="d-flex flex-column align-items-center p-5">
                 <div className="spinner-border text-success" role="status"></div>
-                <p className="mt-2">Chargement des coffrets cadeaux...</p>
+                <p className="mt-2">Chargement des Soins du Corps...</p>
             </div>
         );
     }
@@ -60,7 +62,7 @@ const CoffretSection = () => {
                         textTransform: 'uppercase',
                         letterSpacing: '1px'
                     }}>
-                        🎁 Coffrets Cadeaux
+                        🎁 Soins Du Corps
                     </h3>
                     <p className="text-muted small mb-0">Le plaisir d'offrir ou de se faire plaisir</p>
                 </div>
@@ -83,9 +85,9 @@ const CoffretSection = () => {
                     >
                         {coffrets.map((item) => (
                             <SwiperSlide key={item.id}>
-                                {/* Pass category name down if needed */}
                                 <ProductItem 
                                     item={item} 
+                                    tableSource="products" // Added tableSource prop
                                     categoryName={item.categories?.name} 
                                 />
                             </SwiperSlide>

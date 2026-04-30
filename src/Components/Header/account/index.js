@@ -5,7 +5,7 @@ import { FaSignOutAlt, FaUserCircle, FaUserTie } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../../../Client';
 import Cart from '../../../Pages/Cart';
-import { useMyContext } from '../../../Pages/MyContext'; // Import du contexte
+import { useMyContext } from '../../../Pages/MyContext';
 import './index.css';
 
 const AccountIcons = ({ session }) => {
@@ -14,10 +14,7 @@ const AccountIcons = ({ session }) => {
     const navigate = useNavigate();
     const openMenu = Boolean(anchorEl);
 
-    // 🔥 On récupère cartItems depuis le contexte global
     const { cartItems } = useMyContext();
-
-    // Calcul du nombre total d'articles (somme des quantités)
     const totalQty = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
     const handleOpenMenu = (event) => setAnchorEl(event.currentTarget);
@@ -26,7 +23,13 @@ const AccountIcons = ({ session }) => {
     const handleLogout = async () => {
         await supabase.auth.signOut();
         handleCloseMenu();
-        navigate('/');
+        // Optionnel : force une redirection propre vers home
+        navigate('/', { replace: true });
+    };
+
+    const goToProfile = () => {
+        handleCloseMenu();
+        navigate('/profile');
     };
 
     return (
@@ -34,7 +37,7 @@ const AccountIcons = ({ session }) => {
             <div className="accountContainer d-flex align-items-center">
                 <div className='cartTab d-flex align-items-center'>
                     
-                    {/* Logique conditionnelle pour l'icône de compte */}
+                    {/* Logique conditionnelle basée sur la session transmise par App.jsx */}
                     {session ? (
                         <>
                             <Button 
@@ -42,17 +45,19 @@ const AccountIcons = ({ session }) => {
                                 onClick={handleOpenMenu}
                                 id="user-button"
                             >
-                                <FaUserCircle style={{ color: '#00a896' }} />
+                                {/* Icône changeante si connecté */}
+                                <FaUserCircle style={{ color: '#629C38', fontSize: '22px' }} />
                             </Button>
                             <Menu
                                 anchorEl={anchorEl}
                                 open={openMenu}
                                 onClose={handleCloseMenu}
+                                disableScrollLock={true} // Empêche le saut de page au clic
                                 PaperProps={{
                                     sx: { mt: 1, boxShadow: '0 4px 20px rgba(0,0,0,0.1)', borderRadius: '12px' }
                                 }}
                             >
-                                <MenuItem onClick={() => { navigate('/profile'); handleCloseMenu(); }} className="gap-2">
+                                <MenuItem onClick={goToProfile} className="gap-2">
                                     <FaUserTie /> Mon Profil
                                 </MenuItem>
                                 <MenuItem onClick={handleLogout} className="gap-2 text-danger">
@@ -62,17 +67,18 @@ const AccountIcons = ({ session }) => {
                         </>
                     ) : (
                         <Link to="/login">
-                            <Button className='accounticon'><FaUserTie /></Button>
+                            <Button className='accounticon'>
+                                <FaUserTie style={{ fontSize: '20px' }} />
+                            </Button>
                         </Link>
                     )}
 
-                    {/* Panier avec badge dynamique */}
+                    {/* Panier */}
                     <div className='position-relative ml-2'>
                         <Button className='basketicon' onClick={() => setIsCartOpen(true)}>
                             <BsFillBasket2Fill />
                         </Button>
                         
-                        {/* 🔥 Le badge ne s'affiche que si totalQty > 0 */}
                         {totalQty > 0 && (
                             <span className='count d-flex align-items-center justify-content-center'>
                                 {totalQty}

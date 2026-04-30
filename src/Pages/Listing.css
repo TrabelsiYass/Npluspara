@@ -14,9 +14,14 @@
   flex-shrink: 0;
 }
 
-/* Content */
+/* Content Area */
 .content_area {
   flex: 1;
+}
+
+/* Mobile Filter Button - Hidden by default on Desktop */
+.mobileFilterBtn {
+  display: none !important; 
 }
 
 /* Top bar */
@@ -36,21 +41,20 @@
   color: #333;
 }
 
-/* Grid */
+/* Grid System */
 .products_grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
 
-/* Loader */
+/* Loader & States */
 .loader {
   grid-column: 1/-1;
   text-align: center;
   padding: 60px 0;
 }
 
-/* No products */
 .no_products {
   grid-column: 1/-1;
   text-align: center;
@@ -67,16 +71,7 @@
   justify-content: center;
 }
 
-/* Hover product effect */
-.productItem {
-  transition: all 0.3s ease;
-}
-
-.productItem:hover {
-  transform: translateY(-5px);
-}
-
-/* Responsive */
+/* Responsive Design */
 
 @media (max-width: 1200px) {
   .products_grid {
@@ -85,28 +80,46 @@
 }
 
 @media (max-width: 992px) {
+  .listing_page {
+    padding-bottom: 100px; /* Space for the floating button */
+  }
+
   .listing_wrapper {
-    flex-direction: column;
+    display: block !important; /* Stacked layout for mobile */
   }
 
   .products_grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .sidebarWrapper {
-    width: 100%;
+  /* Show the mobile button only on these screens */
+  .mobileFilterBtn {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2100; /* Higher than sidebar overlay */
+    background-color: #629C38 !important;
+    color: white !important;
+    padding: 12px 30px !important;
+    border-radius: 50px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
   }
 }
 
 @media (max-width: 600px) {
   .products_grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 12px; /* Tighter gap for small phones */
   }
 
   .listing_topbar {
     flex-direction: column;
     gap: 15px;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 }

@@ -12,8 +12,6 @@
 .HomeBanner .item img {
     width: 100%;
     height: auto;
-    object-fit: cover;
-    /* On mobile, you might want a fixed height to prevent layout shift */
     min-height: 150px; 
 }
 
@@ -33,10 +31,12 @@
 .HomeBanner .swiper-button-prev {
     left: 15px !important;
     right: auto !important;
+    background: #629C38;
 }
 
 .HomeBanner .swiper-button-next {
     right: 15px !important;
+    background: #629C38;
 }
 
 .HomeBanner .swiper-button-next:after,
@@ -47,13 +47,13 @@
 
 .HomeBanner .swiper-button-next:hover,
 .HomeBanner .swiper-button-prev:hover {
-    background: #fff;
+    background: #30312f;
     opacity: 1;
 }
 
 /* Pagination Dots */
 .HomeBanner .swiper-pagination-bullet-active {
-    background: #8e00a3 !important; /* Your primary color */
+    background: #629C38 !important; /* Your primary color */
     width: 12px;
     border-radius: 5px;
 }
@@ -66,10 +66,10 @@
     }
     
     .HomeBanner .item {
-        border-radius: 0px; /* Full width look on mobile */
+        border-radius: 10px; /* Full width look on mobile */
     }
 
     .HomeBanner .item{
-        height: 300px !important;
+        height: 100% !important;
     }
 }

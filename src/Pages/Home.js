@@ -1,195 +1,144 @@
-import { Button } from "@mui/material";
-import { useEffect, useState } from 'react'; // Added hooks
+import { Button, CircularProgress } from "@mui/material";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IoMailOutline } from "react-icons/io5";
-import 'swiper/css';
-import 'swiper/css/navigation';
 import Newsletterphoto from '../assets/images/coupon.webp';
-import { supabase } from '../Client'; // Import your client
+import { supabase } from '../Client';
 import HomeBanner from "../Components/HomeBanner";
 import HotDeals from "../Components/Hotdeals";
 import CheveuxSection from "./Cheveux";
 import FlashSaleSection from "./Flash";
-
 import BlogSection from "./BlogPage";
 import CoffretSection from "./Coffret";
-import './Home.css';
 import TopPromos from "./TopPromos";
+import perple from '../assets/images/bonplan2.png';
+import './Home.css';
+import BrandCarousel from "./BrandCarousel";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const controller = new AbortController();
+        let isMounted = true;
+    
+        async function getProducts() {
+            try {
+                setLoading(true);
+                const { data, error } = await supabase
+                    .from('products')
+                    .select('*')
+                    .abortSignal(controller.signal); // Pass the signal here!
+    
+                if (error) throw error;
+                if (isMounted) setProducts(data || []);
+            } catch (error) {
+                // This is the manual catch, but the .env fix above 
+                // is what will stop the white screen.
+                if (error.name !== 'AbortError') {
+                    console.error('Error fetching products:', error.message);
+                }
+            } finally {
+              if (isMounted) setLoading(false);
+            }
+        }
+    
         getProducts();
+    
+        return () => {
+            isMounted = false;
+            controller.abort(); // Cancel the request when component unmounts
+        };
     }, []);
 
-    async function getProducts() {
-        const { data, error } = await supabase
-            .from('products')
-            .select('*');
-        
-        if (error) {
-            console.error('Error fetching products:', error);
-        } else {
-            setProducts(data);
-        }
-        setLoading(false);
-    }
+    const handleViewAll = (path) => {
+        navigate(path);
+    };
 
-    // Filter products for different sections
-    const flashSales = products.filter(p => p.old_price > p.new_price);
-    const winterProducts = products.filter(p => p.category_id === 1); // Example ID
+    if (loading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+                <CircularProgress style={{ color: '#629C38' }} />
+            </div>
+        );
+    }
 
     return (
         <>
             <HomeBanner />
-
             <HotDeals />
 
             <section className="homeProducts">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-md-2">
+                    {/* Section 1: Flash Sales */}
+                    <div className="row mb-5">
+                        <div className="col-md-2 ">
                             <div className="banner">
-                                <div className="banner-inner">
-                                    <h3 style={{ color: '#fff', fontSize: '22px', fontWeight: '800' }}>
-                                        TOP <br/> DEALS
-                                    </h3>
-                                    <div style={{ height: '2px', width: '30px', background: '#fff', margin: '15px 0' }}></div>
-                                    <p style={{ color: '#fff', opacity: '0.9', fontSize: '14px' }}>
-                                        Meilleures <br/> Offres
-                                    </p>
-                                    <button style={{ 
-                                        marginTop: '20px', 
-                                        background: '#fff', 
-                                        color: '#27ae60', 
-                                        border: 'none', 
-                                        padding: '8px 15px', 
-                                        borderRadius: '20px',
-                                        fontWeight: 'bold',
-                                        fontSize: '12px'
-                                    }}>
-                                        VOIR TOUT
-                                    </button>
-                                </div>
+                               
+                                
                             </div>
                         </div>
                         <div className="col-md-10 productRow">
                             <FlashSaleSection />
                         </div>
-                            
                     </div>
 
-                    <br /><br />
-
-                    <div className="row">
+                    {/* Section 2: Cheveux */}
+                    <div className="row mb-5">
                         <div className="col-md-2">
-                            <div className="banner">
-                                <div className="banner-inner">
-                                    <h3 style={{ color: '#fff', fontSize: '22px', fontWeight: '800' }}>
-                                        Cheveux
-                                    </h3>
-                                    <div style={{ height: '2px', width: '30px', background: '#fff', margin: '15px 0' }}></div>
-                                    <p style={{ color: '#fff', opacity: '0.9', fontSize: '14px' }}>
-                                        Meilleures <br/> Offres
-                                    </p>
-                                    <button style={{ 
-                                        marginTop: '20px', 
-                                        background: '#fff', 
-                                        color: '#27ae60', 
-                                        border: 'none', 
-                                        padding: '8px 15px', 
-                                        borderRadius: '20px',
-                                        fontWeight: 'bold',
-                                        fontSize: '12px'
-                                    }}>
-                                        VOIR TOUT
-                                    </button>
-                                </div>
+                            <div className="banner cheveux-bg">
+                                
                             </div>
                         </div>
                         <div className="col-md-10 productRow">
-                            
                             <CheveuxSection />
-                                
-                            
                         </div>
                     </div>
 
-                    <br/><br/>
-
-                    <div className="row">
-                        <div className="col-md-2">
-                            <div className="banner">
+                    {/* Section 3: Coffrets */}
+                    <div className="row mb-5">
+                        <div className="col-md-2 d-none d-md-block">
+                            <div className="banner coffret-bg">
                                 <div className="banner-inner">
-                                    <h3 style={{ color: '#fff', fontSize: '22px', fontWeight: '800' }}>
-                                        Coffret
-                                    </h3>
-                                    <div style={{ height: '2px', width: '30px', background: '#fff', margin: '15px 0' }}></div>
-                                    <p style={{ color: '#fff', opacity: '0.9', fontSize: '14px' }}>
-                                        Meilleures <br/> Offres
-                                    </p>
-                                    <button style={{ 
-                                        marginTop: '20px', 
-                                        background: '#fff', 
-                                        color: '#27ae60', 
-                                        border: 'none', 
-                                        padding: '8px 15px', 
-                                        borderRadius: '20px',
-                                        fontWeight: 'bold',
-                                        fontSize: '12px'
-                                    }}>
-                                        VOIR TOUT
-                                    </button>
+                                    
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-10 productRow">
-                            
                             <CoffretSection />
-                                
-                            
                         </div>
                     </div>
                 </div>
             </section>
+
+            <BrandCarousel />
 
             <TopPromos />
-
             <BlogSection />
 
-
-            <section className="newLetterSection mt-3 mb-3 d-flex align-items-center">
+            <section className="newLetterSection">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <p className="text-white">20% discount for your first order</p>
-                            <h4>join our newsletter and get ...</h4>
-                            <p className="text-light">Join our email subscription now to get updates  <br /> on promotions and coupons.</p>
-                        
-                            <form>
+                    <div className="row align-items-center">
+                        <div className="col-md-6 newsletter-text">
+                            <p className="promo-tag">20% de remise sur votre première commande</p>
+                            <h4>Rejoignez notre newsletter...</h4>
+                            <p className="desc">Inscrivez-vous pour recevoir les dernières promotions et coupons de réduction.</p>
+                            <form className="newsletter-form">
                                 <IoMailOutline />
-                                <input type="text" placeholder="Your Email address"/>
-                                <Button> Subscribe </Button>
+                                <input type="email" placeholder="Votre adresse e-mail" required/>
+                                <Button type="submit">S'abonner</Button>
                             </form>
-                        
-                        
                         </div>
-
-                        <div className="col-md-6">
-                            <img src={Newsletterphoto} alt="Newsletterphoto" />
+                        <div className="col-md-6 d-none d-md-block text-right">
+                            <img src={Newsletterphoto} alt="Newsletter Promo" className="newsletter-img" />
                         </div>
                     </div>
                 </div>
             </section>
-
-            
-
-
-            
         </>
-        
-    )
+    );
 }
 
-export default Home ;
+export default Home;

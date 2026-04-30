@@ -55,16 +55,32 @@ const ProductManager = () => {
     };
 
     const handleCategoryChange = async (catId, isFilter = false) => {
+
         if (isFilter) {
             setFilterCat(catId);
             setFilterSub('');
         } else {
-            setFormData(prev => ({ ...prev, cat_id: catId, sous_cat_id: '' }));
+            setFormData(prev => ({
+                ...prev,
+                cat_id: catId,
+                sous_cat_id: ''   // reset sous-cat when category changes
+            }));
         }
-        
-        const { data } = await supabase.from('sub_categories').select('*').eq('category_id', catId);
+    
+        if (!catId) {
+            setSubCategories([]);
+            return;
+        }
+    
+        const { data } = await supabase
+            .from('sub_categories')
+            .select('*')
+            .eq('category_id', parseInt(catId));
+    
         setSubCategories(data || []);
     };
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -77,8 +93,8 @@ const ProductManager = () => {
             new_price: parseFloat(formData.new_price) || 0,
             old_price: formData.old_price ? parseFloat(formData.old_price) : null,
             stock: parseInt(formData.stock) || 0,
-            cat_id: formData.cat_id ? parseInt(formData.cat_id) : null,
-            sous_cat_id: formData.sous_cat_id ? parseInt(formData.sous_cat_id) : null,
+            cat_id: formData.cat_id ? Number(formData.cat_id) : null,
+            sous_cat_id: formData.sous_cat_id ? Number(formData.sous_cat_id) : null,
             image_url: formData.image_url || null
         };
 
@@ -100,10 +116,20 @@ const ProductManager = () => {
         }
     };
 
-    const startEdit = (product) => {
+    const startEdit = async (product) => {
         setIsEditing(true);
         setEditId(product.id);
-        // On remplit le formulaire avec les données de la ligne sélectionnée
+    
+        // 🔥 Load subcategories before setting form
+        if (product.cat_id) {
+            const { data } = await supabase
+                .from('sub_categories')
+                .select('*')
+                .eq('category_id', parseInt(product.cat_id));
+    
+            setSubCategories(data || []);
+        }
+    
         setFormData({
             name: product.name || '',
             brand: product.brand || '',
@@ -111,11 +137,12 @@ const ProductManager = () => {
             new_price: product.new_price || '',
             old_price: product.old_price || '',
             stock: product.stock || '',
-            cat_id: product.cat_id || '',
-            sous_cat_id: product.sous_cat_id || '',
+            // 👇 IMPORTANT: force string for select
+            cat_id: product.cat_id ? String(product.cat_id) : '',
+            sous_cat_id: product.sous_cat_id ? String(product.sous_cat_id) : '',
             image_url: product.image_url || ''
         });
-        handleCategoryChange(product.cat_id);
+    
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 

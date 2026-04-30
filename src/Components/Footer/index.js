@@ -9,7 +9,7 @@ function Footer() {
           <div className="footer-brand">
             <p>
               NPlusPara.tn est N°1 parapharmacie en ligne en Tunisie. 
-              Vous trouverez chez Pharma-shop.tn tous vos produits parapharmaceutique 
+              Vous trouverez chez NPlusPara.tn tous vos produits parapharmaceutique 
               (santé, beauté, minceur...)
             </p>
           </div>
@@ -18,11 +18,11 @@ function Footer() {
             <div className="footer-column">
               <h4>Informations</h4>
               <ul>
-                <li><a href="#">Promotions</a></li>
-                <li><a href="#">Nouveaux produits</a></li>
-                <li><a href="#">Meilleures ventes</a></li>
-                <li><a href="#">Contactez-nous</a></li>
-                <li><a href="#">A propos</a></li>
+                <li><a href="/category/promotions">Promotions</a></li>
+                <li><a href="category/nouveautes">Nouveaux produits</a></li>
+                <li><a href="category/bons-plans">Meilleures ventes</a></li>
+                <li><a href="/Contact">Contactez-nous</a></li>
+                <li><a href="/WhoWeAre">A propos</a></li>
               </ul>
             </div>
 
@@ -32,7 +32,6 @@ function Footer() {
                 <li><a href="#">Mes commandes</a></li>
                 <li><a href="#">Mes avoirs</a></li>
                 <li><a href="#">Mes informations personnelles</a></li>
-                <li><a href="#">Mes bons de réduction</a></li>
               </ul>
             </div>
 
@@ -50,15 +49,11 @@ function Footer() {
           <div className="copyright">
             <p>Copyright 2026 © <a href="/">Npluspara.tn</a></p>
           </div>
-          <div className="footer-nav">
-            <a href="#">Comment commander ?</a>
-            <a href="#">Réclamation Client</a>
-            <a href="#">Comment ça marche ?</a>
-          </div>
+          
           <div className="social-links">
-            <a href="#" className="social-link"><FaFacebook /></a>
+            <a href="https://www.facebook.com/NPLUSPARA" className="social-link"><FaFacebook /></a>
             <a href="#" className="social-link"><FaYoutube /></a>
-            <a href="#" className="social-link"><FaInstagram /></a>
+            <a href="https://www.instagram.com/npluspara/" className="social-link"><FaInstagram /></a>
           </div>
         </div>
       </div>

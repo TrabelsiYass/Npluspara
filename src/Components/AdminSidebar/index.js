@@ -1,4 +1,12 @@
-import { MdArticle, MdCategory, MdDashboard, MdFlashOn, MdLayers, MdShoppingBag } from "react-icons/md"; // Ajout de MdArticle
+import { 
+    MdArticle, 
+    MdCategory, 
+    MdDashboard, 
+    MdFlashOn, 
+    MdLayers, 
+    MdShoppingBag, 
+    MdReceiptLong // Added icon for orders
+} from "react-icons/md"; 
 import { Link, useLocation } from 'react-router-dom';
 import './index.css';
 
@@ -10,8 +18,9 @@ const AdminSidebar = () => {
         { path: '/admin/categories', icon: <MdCategory />, label: 'Catégories' },
         { path: '/admin/sub-categories', icon: <MdLayers />, label: 'Sous-Catégories' },
         { path: '/admin/products', icon: <MdShoppingBag />, label: 'Produits' },
+        { path: '/admin/commandes', icon: <MdReceiptLong />, label: 'Commandes' }, // New Entry
         { path: '/admin/extra', icon: <MdFlashOn />, label: 'Extras' },
-        { path: '/admin/blog', icon: <MdArticle />, label: 'Blog / Mag' }, // Nouvelle entrée
+        { path: '/admin/blog', icon: <MdArticle />, label: 'Blog / Mag' },
     ];
 
     return (

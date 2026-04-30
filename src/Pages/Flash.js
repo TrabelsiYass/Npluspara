@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { supabase } from '../Client'; // Verified your client file name
 import ProductItem from '../Components/ProductItem';
 
-// Import Swiper styles in your main App.js or here if not already present
+// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -13,37 +13,42 @@ const FlashSaleSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchFlashProducts = async () => {
+        const controller = new AbortController();
+        let isMounted = true;
+    
+        const fetchData = async () => {
             try {
-                setLoading(true);
-                
-                // Corrected table name to match your SQL: "Flash_products"
                 const { data, error } = await supabase
-                    .from('Flash_products') 
-                    .select('*')
-                    .order('id', { ascending: true });
-
+                    .from('top_promos')
+                    .select('*');
+                
                 if (error) throw error;
-                setFlashSales(data || []);
+                if (isMounted) setFlashSales(data || []);
             } catch (error) {
-                console.error('Supabase Error:', error.message);
+                if (error.name !== 'AbortError') {
+                    console.error('Fetch Error:', error.message);
+                }
             } finally {
-                setLoading(false);
+                if (isMounted) setLoading(false);
             }
         };
-
-        fetchFlashProducts();
+    
+        fetchData();
+    
+        return () => {
+            isMounted = false;
+            controller.abort();
+        };
     }, []);
 
-    // Placeholder during loading for a better User Experience
     if (loading) {
         return (
-            <>
+            <div className="text-center py-5">
                 <div className="spinner-border text-success" role="status">
                     <span className="visually-hidden">Chargement...</span>
                 </div>
                 <p className="mt-2">Récupération des meilleures offres...</p>
-            </>
+            </div>
         );
     }
 
@@ -80,7 +85,8 @@ const FlashSaleSection = () => {
                     >
                         {flashSales.map((item) => (
                             <SwiperSlide key={item.id}>
-                                <ProductItem item={item} />
+                                {/* Added tableSource prop here */}
+                                <ProductItem item={item} tableSource="top_promos" />
                             </SwiperSlide>
                         ))}
                     </Swiper>

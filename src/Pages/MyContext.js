@@ -8,7 +8,6 @@ export const MyProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [guestId, setGuestId] = useState(localStorage.getItem('guest_id') || null);
 
-    // Initialisation du Guest ID unique
     useEffect(() => {
         if (!guestId) {
             const newId = uuidv4();
@@ -17,7 +16,6 @@ export const MyProvider = ({ children }) => {
         }
     }, [guestId]);
 
-    // Charger le panier depuis la DB au démarrage
     useEffect(() => {
         if (guestId) fetchCart();
     }, [guestId]);
@@ -30,7 +28,6 @@ export const MyProvider = ({ children }) => {
                 .eq('guest_id', guestId);
             
             if (error) throw error;
-
             if (data) {
                 const formatted = data.map(item => ({
                     id: item.products.id,
@@ -46,17 +43,30 @@ export const MyProvider = ({ children }) => {
         }
     };
 
+    // --- NEW: Function to clear the cart in Supabase ---
+    const resertCart = async () => {
+        try {
+            const { error } = await supabase
+                .from('cart')
+                .delete()
+                .eq('guest_id', guestId);
+            
+            if (error) throw error;
+            setCartItems([]); // Clear local state
+        } catch (err) {
+            console.error("Erreur resetCart:", err.message);
+        }
+    };
+
     const updateQty = async (productId, delta) => {
         const item = cartItems.find(i => i.id === productId);
         if (!item) return;
         const newQty = Math.max(1, item.qty + delta);
-
         const { error } = await supabase
             .from('cart')
             .update({ qty: newQty })
             .eq('guest_id', guestId)
             .eq('product_id', productId);
-
         if (!error) fetchCart();
     };
 
@@ -66,7 +76,6 @@ export const MyProvider = ({ children }) => {
             .delete()
             .eq('guest_id', guestId)
             .eq('product_id', productId);
-
         if (!error) fetchCart();
     };
 
@@ -83,7 +92,7 @@ export const MyProvider = ({ children }) => {
     };
 
     return (
-        <MyContext.Provider value={{ cartItems, updateQty, removeItem, addToCart }}>
+        <MyContext.Provider value={{ cartItems, updateQty, removeItem, addToCart, resertCart }}>
             {children}
         </MyContext.Provider>
     );

@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useEffect, useState, Suspense } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import './App.css';
-import { supabase } from './Client'; // Import du client Supabase
+import { supabase } from './Client';
 
 // Components & Pages
 import Footer from "./Components/Footer/index";
@@ -25,84 +25,106 @@ import ProductDetails from "./Pages/ProductDetails";
 import Profile from './Pages/Profile';
 import ScrollToTop from "./Pages/Scroll";
 import WhoWeAre from "./Pages/WhoWeAre";
+import { CircularProgress } from "@mui/material";
+import ResetPassword from "./Pages/ResetPassword";
+import Paiement from "./Pages/Paiement";
+import Commandes from "./Pages/Admin/Commandes";
 
-
-
-// Lazy loading pour le blog
 const BlogPage = lazy(() => import('./Pages/BlogPage'));
 const BlogPostDetail = lazy(() => import('./Pages/BlogPostDetail'));
 
 function App() {
-  const [session, setSession] = useState(null);
+  // Use 'undefined' to represent the "Checking..." state
+  const [session, setSession] = useState(undefined);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  // Vérification initiale
-  const checkSession = async () => {
-    const { data: { session }, error } = await supabase.auth.getSession();
-    if (error) {
-      setSession(null);
-    } else {
-      setSession(session);
-    }
-    setLoading(false);
-  };
+    // 1. Initial Check: Get session from storage/cookies immediately
+    const initializeAuth = async () => {
+      const { data: { session: initialSession } } = await supabase.auth.getSession();
+      setSession(initialSession);
+      setLoading(false);
+    };
 
-  checkSession();
+    initializeAuth();
 
-  const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-    setSession(session);
-    setLoading(false);
-  });
+    // 2. Real-time Listener: Updates when user logs in or out
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+      setSession(currentSession);
+      setLoading(false);
+    });
 
-  return () => subscription.unsubscribe();
-}, []);
+    return () => subscription.unsubscribe();
+  }, []);
+
+  /**
+   * IMPORTANT: This guard prevents the app from showing an "empty" 
+   * logged-out state while Supabase is still thinking.
+   */
+  if (loading || session === undefined) {
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh', background: '#f8f9fa' }}>
+        <div className="text-center">
+          <CircularProgress style={{ color: '#629C38' }} />
+          <p className="mt-3" style={{ color: '#629C38', fontWeight: '500' }}>Chargement...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>
       <ScrollToTop />
       <MyProvider>
-        <Routes>
-          {/* --- ROUTES PUBLIQUES (Storefront) --- */}
-          {/* On passe la session au Header pour afficher dynamiquement "Connexion" ou "Profil" */}
-          <Route element={<><Header session={session} /><Outlet /><Footer /></>}>
-            <Route path="/login" element={!session ? <Login /> : <Navigate to="/" />} />
-            <Route path="/profile" element={session ? <Profile /> : <Navigate to="/login" />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/category/:categorySlug" element={<Listing />} />
-            <Route path="/category/:categorySlug/:subCategorySlug" element={<Listing />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            
-            {/* Rediriger vers l'accueil si déjà connecté, sinon afficher Login */}
-            
-            
-            <Route path="/whoweare" element={<WhoWeAre />} />
-            <Route path="/Contact" element={<Contact />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:id" element={<BlogPostDetail />} />
-          </Route>
+        <Suspense fallback={
+          <div className="d-flex justify-content-center align-items-center p-5">
+            <CircularProgress color="success" />
+          </div>
+        }>
+          <Routes>
+            {/* Main Layout */}
+            <Route element={<><Header session={session} /><Outlet /><Footer /></>}>
+              <Route path="/" element={<Home />} />
+              
+              {/* AUTH LOGIC: Redirects users based on session state */}
+              <Route 
+                path="/login" 
+                element={!session ? <Login /> : <Navigate to="/" replace />} 
+              />
+              
+              <Route 
+                path="/profile" 
+                element={session ? <Profile /> : <Navigate to="/login" replace />} 
+              />
+              
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/products" element={<Listing />} />
+              <Route path="/category/:categorySlug" element={<Listing />} />
+              <Route path="/category/:categorySlug/:subCategorySlug" element={<Listing />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/paiement" element={<Paiement />} />
+              <Route path="/whoweare" element={<WhoWeAre />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:id" element={<BlogPostDetail />} />
+            </Route>
 
-          {/* --- ROUTE LOGIN ADMIN (Hors Layout) --- */}
-          <Route path="/admin-login" element={<LoginAdmin />} />
+            {/* Admin Routes */}
+            <Route path="/admin-login" element={<LoginAdmin />} />
+            <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+              <Route index element={<AdminStats />} />
+              <Route path="categories" element={<AdminCategories />} />
+              <Route path="sub-categories" element={<AdminSubCategories />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="extra" element={<AdminFlashVente />} />
+              <Route path="blog" element={<AdminBlog />} />
+              <Route path="commandes" element={<Commandes />} />
+            </Route>
 
-          {/* --- ROUTES ADMIN SÉCURISÉES --- */}
-          <Route 
-            path="/admin" 
-            element={
-              <ProtectedRoute>
-                <AdminLayout />
-              </ProtectedRoute>
-            }
-          >
-            <Route index element={<AdminStats />} />
-            <Route path="categories" element={<AdminCategories />} />
-            <Route path="sub-categories" element={<AdminSubCategories />} />
-            <Route path="products" element={<AdminProducts />} />
-            <Route path="extra" element={<AdminFlashVente />} />
-            <Route path="blog" element={<AdminBlog />} />
-          </Route>
-
-        </Routes>
+            {/* 404 Redirect */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </MyProvider>
     </BrowserRouter>
   );

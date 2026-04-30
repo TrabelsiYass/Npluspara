@@ -4,15 +4,12 @@
   justify-content: center;
 }
 
-.logo-container{
-    width: 100% !important;
-    display: flex;
-    align-items: center !important;
-    justify-content: center;
-  }
+
 
 .header{
   border-bottom: 1px solid rgba(0,0,0,0.1) ; padding-bottom: 1px;
+  background: linear-gradient(135deg, #f7fbf6, #eef7ea);
+  
 }
   
   .headerWrapper .top-strip{
@@ -30,7 +27,6 @@
 
   .containerheader{
     background-color: var(--white);
-    padding: 15px 0;
     border-bottom: 1px solid var(--border-color);
 
     display: flex;
@@ -40,7 +36,7 @@
   }
   
   .logoWrapper img{
-    width: 100%;
+    width: 70%;
   }
 
 
@@ -79,6 +75,7 @@
   @media (max-width: 575px) {
     .logo-container{
       display: flex;
+      padding: 10px 0 ;
       justify-content: center !important;
       align-items: center !important;
     }
@@ -90,6 +87,7 @@
     }
   
     .logoWrapper img{
+      width: 100%;
       margin: 0 auto;
     }
   }

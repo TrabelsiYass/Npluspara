@@ -12,24 +12,34 @@ const CheveuxSection = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchHairProducts = async () => {
+        const controller = new AbortController();
+        let isMounted = true;
+
+        const fetchData = async () => {
             try {
-                setLoading(true);
                 const { data, error } = await supabase
-                    .from('cheveux_table') 
+                    .from('products')
                     .select('*')
-                    .order('id', { ascending: true });
+                    .eq('cat_id', 2) // Example ID for Hair Care
+                    .abortSignal(controller.signal);
 
                 if (error) throw error;
-                setHairProducts(data || []);
+                if (isMounted) setHairProducts(data || []);
             } catch (error) {
-                console.error('Supabase Error:', error.message);
+                if (error.name !== 'AbortError') {
+                    console.error('Fetch Error:', error.message);
+                }
             } finally {
-                setLoading(false);
+                if (isMounted) setLoading(false);
             }
         };
 
-        fetchHairProducts();
+        fetchData();
+
+        return () => {
+            isMounted = false;
+            controller.abort();
+        };
     }, []);
 
     if (loading) {
@@ -38,7 +48,7 @@ const CheveuxSection = () => {
                 <div className="spinner-border text-success" role="status">
                     <span className="visually-hidden">Chargement...</span>
                 </div>
-                <p className="mt-2 text-muted">Récupération des soins capillaires...</p>
+                <p className="mt-2 text-muted">Récupération des soins de visage...</p>
             </div>
         );
     }
@@ -53,7 +63,7 @@ const CheveuxSection = () => {
                         textTransform: 'uppercase',
                         letterSpacing: '1px'
                     }}>
-                        🌿 Soins Cheveux
+                        🌿 Soins De Visage
                     </h3>
                     <p className="text-muted small mb-0">Découvrez nos meilleures solutions capillaires</p>
                 </div>
@@ -76,7 +86,8 @@ const CheveuxSection = () => {
                     >
                         {hairProducts.map((item) => (
                             <SwiperSlide key={item.id}>
-                                <ProductItem item={item} />
+                                {/* Explicitly passing "products" as the table source */}
+                                <ProductItem item={item} tableSource="products" />
                             </SwiperSlide>
                         ))}
                     </Swiper>

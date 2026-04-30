@@ -5,24 +5,14 @@
 
 .deals-layout {
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 400px 1fr;
   gap: 30px;
 }
 
 .bons-plans-banner {
-  background: linear-gradient(60deg, rgba(39, 174, 95, 0.295) 0%, rgba(107, 173, 60, 0.404) 100%), 
-              url('/src/assets/images/Hotdeals.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 8px;
-  padding: 30px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 400px;
-  box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
+  background: url('/src/assets/images/bonplan.png');
+  
+
 }
 
 
@@ -31,7 +21,8 @@
   background-color: white;
   border-radius: 8px;
   padding: 20px;
-  border: 2px solid #2ecc71; /* Your primary green */
+  border: 2px solid #629C38; /* Your primary green */
+  box-shadow: 0 20px 5px rgba(98, 156, 56, 0.4);
   overflow: hidden; /* Important for Swiper */
 }
 
@@ -62,7 +53,7 @@
 }
 
 .deals-nav button:hover {
-  color: #2ecc71;
+  color: #629C38;
 }
 
 .countdown-timer {
@@ -72,7 +63,7 @@
 }
 
 .time-box {
-  background-color: #2ecc71;
+  background-color: #629C38;
   color: white;
   padding: 8px;
   border-radius: 4px;
@@ -116,7 +107,7 @@
 }
 
 .current-price {
-  color: #2ecc71;
+  color: #629C38;
   font-weight: bold;
   font-size: 18px;
 }
@@ -130,7 +121,7 @@
 
 .add-to-cart {
   width: 100%;
-  background: #2ecc71;
+  background: #629C38;
   color: white;
   border: none;
   padding: 10px;
@@ -146,6 +137,6 @@
   }
   
   .bons-plans-banner {
-    min-height: 400px;
+    min-height: 216px;
   }
 }

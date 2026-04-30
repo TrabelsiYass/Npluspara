@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { supabase } from '../Client';
-import ProductItem from '../Components/ProductItem'; // Reuse your existing component
+import ProductItem from '../Components/ProductItem'; 
 import './TopPromos.css';
 
 const TopPromos = () => {
@@ -9,25 +9,47 @@ const TopPromos = () => {
     const observer = useRef();
 
     useEffect(() => {
+        const controller = new AbortController();
+
         const fetchPromos = async () => {
             try {
+                setLoading(true);
+                
+                // Fetch products from Flash_products table
                 const { data, error } = await supabase
-                    .from('top_promos')
-                    .select('*')
-                    .order('id', { ascending: true });
+                    .from('Flash_products')
+                    .select('*');
+
                 if (error) throw error;
-                setProducts(data || []);
+
+                // Sort by the absolute value of the discount: (old - new)
+                // Assuming your table has old_price and price columns
+                const sortedByDiscount = (data || [])
+                    .sort((a, b) => {
+                        const discountA = (a.old_price || 0) - (a.price || 0);
+                        const discountB = (b.old_price || 0) - (b.price || 0);
+                        return discountB - discountA;
+                    })
+                    .slice(0, 16); // Take the top 16 best deals
+
+                setProducts(sortedByDiscount);
             } catch (err) {
-                console.error("Supabase Error:", err.message);
+                if (err.name !== 'AbortError') {
+                    console.error("Supabase Error:", err.message);
+                }
             } finally {
                 setLoading(false);
             }
         };
+
         fetchPromos();
+
+        return () => controller.abort();
     }, []);
 
     useEffect(() => {
-        // This handles the "Appear on Scroll" functionality
+        if (products.length === 0) return;
+
         observer.current = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -42,12 +64,18 @@ const TopPromos = () => {
         return () => observer.current.disconnect();
     }, [products]);
 
-    if (loading) return null;
+    if (loading && products.length === 0) return null;
 
     return (
         <section className="top-promos-section py-5">
             <div className="container">
-                <h2 className="hd mb-4">Nos top promos</h2>
+                <div className="d-flex align-items-center justify-content-between mb-4">
+                    <h2 className="hd mb-0" style={{ fontWeight: '800', color: '#27ae60' }}>
+                        🔥 Meilleures Réductions
+                    </h2>
+                    <span className="badge bg-danger">Top 16 Offres</span>
+                </div>
+                
                 <div className="promos-grid">
                     {products.map((item, index) => (
                         <div 
@@ -55,7 +83,8 @@ const TopPromos = () => {
                             className="promo-wrapper"
                             style={{ transitionDelay: `${(index % 4) * 0.1}s` }}
                         >
-                            <ProductItem item={item} />
+                            {/* Pass tableSource as Flash_products */}
+                            <ProductItem item={item} tableSource="Flash_products" />
                         </div>
                     ))}
                 </div>
