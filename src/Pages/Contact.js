@@ -105,8 +105,8 @@ const Contact = () => {
                 <div className="icon-wrapper"><FaPhoneAlt /></div>
                 <div className="text-content">
                   <h4>Ligne Directe</h4>
-                  <p>+216 71 700 000</p>
-                  <p className="sub-text">WhatsApp: +216 99 000 000</p>
+                  <p>+216 28 895 920</p>
+                  <p className="sub-text">WhatsApp: +216 28 895 920</p>
                 </div>
               </div>
 
@@ -123,9 +123,9 @@ const Contact = () => {
             <div className="social-footer">
               <h5>Suivez notre actualité</h5>
               <div className="social-icons">
-                <a href="#"><FaFacebook /></a>
-                <a href="#"><FaInstagram /></a>
-                <a href="#"><FaWhatsapp /></a>
+                <a href="https://www.facebook.com/NPLUSPARA"><FaFacebook /></a>
+                <a href="https://www.instagram.com/npluspara/"><FaInstagram /></a>
+                <FaWhatsapp />
               </div>
             </div>
           </div>

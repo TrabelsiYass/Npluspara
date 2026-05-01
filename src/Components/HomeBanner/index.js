@@ -31,17 +31,17 @@ const HomeBanner = () => {
                         
                         <SwiperSlide >
                             <div className='item'>
-                                <img src={banner3} className='w-100' alt="banner" />
+                                <img src={banner3} loading="lazy" className='w-100' alt="banner" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide >
                             <div className='item'>
-                                <img src={banner4} className='w-100' alt="banner" />
+                                <img src={banner4} loading="lazy" className='w-100' alt="banner" />
                             </div>
                         </SwiperSlide>
                         <SwiperSlide >
                             <div className='item'>
-                                <img src={banner5} className='w-100' alt="banner" />
+                                <img src={banner5} loading="lazy" className='w-100' alt="banner" />
                             </div>
                         </SwiperSlide>
                   

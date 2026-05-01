@@ -6,7 +6,13 @@ const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
+    const [products, setProducts] = useState([]); // New: Global products state
+    const [productsLoading, setProductsLoading] = useState(true); // New: Loading state
     const [guestId, setGuestId] = useState(localStorage.getItem('guest_id') || null);
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
 
     useEffect(() => {
         if (!guestId) {
@@ -19,6 +25,22 @@ export const MyProvider = ({ children }) => {
     useEffect(() => {
         if (guestId) fetchCart();
     }, [guestId]);
+
+    const fetchProducts = async () => {
+        try {
+            setProductsLoading(true);
+            const { data, error } = await supabase
+                .from('products')
+                .select('*');
+            
+            if (error) throw error;
+            setProducts(data || []);
+        } catch (err) {
+            console.error("Erreur fetchProducts:", err.message);
+        } finally {
+            setProductsLoading(false);
+        }
+    };
 
     const fetchCart = async () => {
         try {
@@ -92,7 +114,7 @@ export const MyProvider = ({ children }) => {
     };
 
     return (
-        <MyContext.Provider value={{ cartItems, updateQty, removeItem, addToCart, resertCart }}>
+        <MyContext.Provider value={{ cartItems, updateQty, removeItem, addToCart, resertCart, products, productsLoading, fetchProducts }}>
             {children}
         </MyContext.Provider>
     );
