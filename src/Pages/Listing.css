@@ -21,7 +21,7 @@
 
 /* Mobile Filter Button - Hidden by default on Desktop */
 .mobileFilterBtn {
-  display: none !important; 
+  display: none ; 
 }
 
 /* Top bar */
@@ -99,7 +99,7 @@
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2100; /* Higher than sidebar overlay */
+    z-index: 99999999 !important; /* Higher than sidebar overlay */
     background-color: #629C38 !important;
     color: white !important;
     padding: 12px 30px !important;
@@ -107,6 +107,7 @@
     font-weight: 600 !important;
     text-transform: none !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+    
   }
 }
 

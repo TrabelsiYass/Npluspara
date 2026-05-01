@@ -174,6 +174,7 @@ const Listing = () => {
   }, [fetchProducts]);
 
   return (
+    <>
     <section className="listing_page">
       <div className="container">
         
@@ -197,16 +198,7 @@ const Listing = () => {
           )}
         </div>
 
-        {isMobile && (
-          <Button 
-            variant="contained" 
-            className="mobileFilterBtn"
-            startIcon={<MdFilterList />}
-            onClick={() => setIsSidebarOpen(true)}
-          >
-            Filtrer
-          </Button>
-        )}
+        
 
         <div className="listing_wrapper">
           <Sidebar
@@ -262,8 +254,32 @@ const Listing = () => {
             )}
           </div>
         </div>
+        
       </div>
     </section>
+    {isMobile && (
+          <Button 
+            variant="contained" 
+            
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              position: 'fixed',
+              bottom: 20,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 999999,
+              backgroundColor: '#629C38',
+              borderRadius: '50px',
+              px: 3,
+              py: 1.5
+            }}
+            startIcon={<MdFilterList />}
+            onClick={() => setIsSidebarOpen(true)}
+          >
+            Filtrer
+          </Button>
+        )}
+    </>
   );
 };
 
