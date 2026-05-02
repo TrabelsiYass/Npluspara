@@ -193,6 +193,10 @@ const ProductManager = () => {
                                     <label className="form-label fw-bold small">Marque</label>
                                     <input type="text" className="form-control bg-light border-0 shadow-none" value={formData.brand} onChange={e => setFormData({...formData, brand: e.target.value})} />
                                 </div>
+                                <div className="col-md-12">
+                                    <label className="form-label fw-bold small">Description</label>
+                                    <input type="text" className="form-control bg-light border-0 shadow-none" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
+                                </div>
 
                                 <div className="col-12">
                                     <label className="form-label fw-bold small"><MdLink className="me-1"/> URL de l'image</label>
