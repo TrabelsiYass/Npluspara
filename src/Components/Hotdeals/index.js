@@ -98,8 +98,8 @@ function HotDeals() {
                                 navigation={false}
                                 breakpoints={{
                                     480: { slidesPerView: 2 },
-                                    768: { slidesPerView: 3 },
-                                    1200: { slidesPerView: 3 }
+                                    768: { slidesPerView: 2 },
+                                    1300: { slidesPerView: 3 }
                                 }}
                                 modules={[Navigation]}
                                 className="mySwiper"

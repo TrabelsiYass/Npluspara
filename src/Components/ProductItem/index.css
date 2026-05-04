@@ -221,30 +221,72 @@
     cursor: not-allowed;
 }
 
+
 /* ============================= */
 /* MOBILE OPTIMIZATION */
 /* ============================= */
 
 @media (max-width: 768px) {
+    .productItem {
+        /* Remove fixed viewport height to allow content to dictate size */
+        height: auto; 
+        min-height: 400px;
+    }
 
     .productItem .imgWrapper {
-        height: 160px;
+        /* Use aspect-ratio instead of fixed height for responsiveness */
+        height: auto;
+        aspect-ratio: 1 / 1; 
+        padding: 10px;
+        background-color: #f6f7f9;
+    }
+
+    .productItem .imgWrapper img {
+        /* Ensure the image doesn't overflow and stays centered */
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .productItem .actions {
+        /* Move actions inside the frame on mobile so they don't hide */
+        right: 8px;
+        top: 8px;
+    }
+
+    .productItem .actions button {
+        /* Slightly smaller buttons for small screens */
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+    }
+
+    .productItem .info_prod {
         padding: 12px;
     }
 
     .productItem h4 {
         font-size: 13px;
+        margin: 4px 0;
+        /* Ensure text doesn't disappear if title is long */
+        --webkit-line-clamp: 2; 
     }
 
     .productItem .short-desc {
-        display: none; /* cleaner mobile */
+        display: none; /* Keep hidden to save vertical space */
     }
 
-    .productItem .actions {
-        right: 10px; /* always visible for touch */
+    .productItem .product-prices {
+        flex-direction: column; /* Stack prices if they are too long */
+        align-items: flex-start;
+        gap: 2px;
     }
 
     .productItem .newPrice {
         font-size: 14px;
+    }
+
+    .productItem .oldPrice {
+        font-size: 11px;
     }
 }

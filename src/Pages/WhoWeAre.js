@@ -56,15 +56,33 @@ const WhoWeAre = () => {
           <div className="col-md-6 mt-5 mt-md-0 ps-md-5">
             <h2 className="section-title">Notre Histoire</h2>
             <p className="lead fw-bold text-success">
-              Plus qu'un simple point de vente, un partenaire de votre routine quotidienne.
+              Bien plus qu’un point de vente, un véritable partenaire de votre bien-être.
             </p>
             <p>
-              Depuis plus de 10 ans, <strong>N PLUS PARA</strong> s'engage à transformer l'accès aux soins de parapharmacie. Né d'une volonté d'allier la rigueur pharmaceutique au plaisir de la cosmétique, nous accompagnons nos clients dans leur quête de bien-être avec une sélection pointue et des conseils personnalisés.
-            </p>
+            <strong>N PLUS PARA</strong> est née d’une conviction profonde : celle que chaque personne mérite un accompagnement de qualité, basé sur l’écoute, la confiance et l’expertise.
+
+            Derrière cette vision, une fondatrice passionnée, forte de plus de 10 ans d’expérience dans le domaine de la parapharmacie et du conseil en santé et beauté. Au fil des années, elle a été au plus proche des besoins réels de ses clients, comprenant que derrière chaque peau, chaque problématique, il y a une histoire unique.            </p>
             <p>
-              Nous ne vendons pas seulement des produits ; nous proposons des solutions concrètes pour la peau, les cheveux et la santé globale, testées et approuvées par nos experts.
-            </p>
+            C’est cette approche humaine qui a donné naissance à <strong>N PLUS PARA </strong>, une enseigne créée pour proposer bien plus que des produits : une véritable expérience de conseil et de soin.
+
+            Depuis, nous nous engageons à réinventer l’accès à la parapharmacie en Tunisie, en alliant rigueur pharmaceutique et plaisir de la cosmétique. Nous accompagnons chaque client dans sa quête d’équilibre, de beauté et de bien-être.            </p>
           </div>
+        </div>
+        <div>
+          <p>
+          <strong ><h2 className="section-title">Notre Vision </h2></strong>
+          </p>
+          <p className="lead fw-bold ">
+
+          Faire de <strong>N PLUS PARA</strong> une référence en parapharmacie en Tunisie, en offrant une expérience où expertise, confiance et bien-être se rencontrent.
+
+          </p>
+          <p>
+
+          <strong ><h2 className="section-title">Notre Mission </h2></strong>
+          <p className="lead fw-bold ">Proposer des solutions efficaces et adaptées pour la peau, les cheveux et le bien-être global, à travers une sélection rigoureuse de produits et un conseil personnalisé. <br />Accompagner chaque client avec écoute et exigence, pour une parapharmacie plus humaine, plus transparente et plus proche de ses besoins.
+          </p>
+          </p>
         </div>
       </section>
 
