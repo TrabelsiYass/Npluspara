@@ -108,7 +108,7 @@
       <g:title>ACM DEPIWHITE CR ANTI TACHE ZONE INTIME</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/11</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-CI-PACKSHOT-FR.jpg?crop=center&height=1400&v=1743792842&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-CI-PACKSHOT-FR.jpg</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>70.69 TND</g:price>
@@ -119,7 +119,7 @@
       <g:title>ACM DEPIWHITE LAIT CORPOREL 200 ML</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/12</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-LAIT-PACKSHOT-FR.jpg?crop=center&height=1400&v=1736866673&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-LAIT-PACKSHOT-FR.jpg</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>77.35 TND</g:price>
@@ -130,7 +130,7 @@
       <g:title>ACM DUOLYS CREME RICHE 40ML</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/13</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-DUOLYSSOINHYDRATANT.png?crop=center&height=1400&v=1740564483&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-DUOLYSSOINHYDRATANT.png</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>65.87 TND</g:price>
@@ -141,7 +141,7 @@
       <g:title>ACM SEBIONEX SAVON PEUX MIXTE A GRASSE</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/14</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-SEBIONEX.png?crop=center&height=1400&v=1740565152&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-SEBIONEX.png?crop=center</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>27.31 TND</g:price>
@@ -152,7 +152,7 @@
       <g:title>ACM VITIX COMPRIME B/30</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/15</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/vitix-comprimes.jpg?crop=center&height=1400&v=1738834562&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/vitix-comprimes.jpg?crop=center</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>86.75 TND</g:price>
@@ -1285,7 +1285,7 @@
       <g:title>BIBS BOTTLE NIPPLE FAST FLOW</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/119</g:link>
-      <g:image_link>https://nature-baby.com/cdn/shop/files/5000013_5713795265299_BIBS_BottleNipple_Silicone_FastFlow_2000x2000_jpg.jpg?v=1764645090&width=493</g:image_link>
+      <g:image_link>https://nature-baby.com/cdn/shop/files/5000013_5713795265299_BIBS_BottleNipple_Silicone_FastFlow_2000x2000_jpg.jpg</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>28.92 TND</g:price>
@@ -1417,7 +1417,7 @@
       <g:title>BIBS PACIFIER PACK IVORY AND SAGE SIZE 3</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/131</g:link>
-      <g:image_link>https://bibsworld.com/cdn/shop/files/BIBS-Studio-bumblebee-lifestyle-4.jpg?v=1741056034&width=1946</g:image_link>
+      <g:image_link>https://bibsworld.com/cdn/shop/files/BIBS-Studio-bumblebee-lifestyle-4.jpg?v=1741056034</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>46.59 TND</g:price>
@@ -1736,7 +1736,7 @@
       <g:title>BIOCYTE GLUTATHION LIPOSOMAL BT /30</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/159</g:link>
-      <g:image_link>https://www.biocyte.com/cdn/shop/files/773dd4807b5ea410a456267c558505c82dda4a13_byglg30_ambiance_biocyte_bioclongevity_glutathion.jpg?v=1744099023&width=1000</g:image_link>
+      <g:image_link>https://www.biocyte.com/cdn/shop/files/773dd4807b5ea410a456267c558505c82dda4a13_byglg30_ambiance_biocyte_bioclongevity_glutathion.jpg?v=1744099023</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>111.56 TND</g:price>
@@ -6136,7 +6136,7 @@
       <g:title>MIRAVELLA ULTRA-MAG BT 60 GELULES</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/558</g:link>
-      <g:image_link>https://miravella.tn/cdn/shop/files/UltraMag_1.png?v=1770226880&width=240</g:image_link>
+      <g:image_link>https://miravella.tn/cdn/shop/files/UltraMag_1.png?v=1770226880</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>34 TND</g:price>
@@ -6851,7 +6851,7 @@
       <g:title>ACM DEPIWHITE CR ANTI TACHE ZONE INTIME</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1261</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-CI-PACKSHOT-FR.jpg?crop=center&height=1400&v=1743792842&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-CI-PACKSHOT-FR.jpg?crop=center</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>70.69 TND</g:price>
@@ -6862,7 +6862,7 @@
       <g:title>ACM DEPIWHITE LAIT CORPOREL 200 ML</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1262</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-LAIT-PACKSHOT-FR.jpg?crop=center&height=1400&v=1736866673&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/DEPIWHITE-LAIT-PACKSHOT-FR.jpg?crop=center</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>77.35 TND</g:price>
@@ -6873,7 +6873,7 @@
       <g:title>ACM DUOLYS CREME RICHE 40ML</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1263</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-DUOLYSSOINHYDRATANT.png?crop=center&height=1400&v=1740564483&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-DUOLYSSOINHYDRATANT.png?crop=center</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>65.87 TND</g:price>
@@ -6884,7 +6884,7 @@
       <g:title>ACM SEBIONEX SAVON PEUX MIXTE A GRASSE</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1264</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-SEBIONEX.png?crop=center&height=1400&v=1740565152&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/HEROIMAGE-SEBIONEX.png?crop=center</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>27.31 TND</g:price>
@@ -6895,7 +6895,7 @@
       <g:title>ACM VITIX COMPRIME B/30</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1265</g:link>
-      <g:image_link>https://labo-acm.com/cdn/shop/files/vitix-comprimes.jpg?crop=center&height=1400&v=1738834562&width=1200</g:image_link>
+      <g:image_link>https://labo-acm.com/cdn/shop/files/vitix-comprimes.jpg?crop=center</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>86.75 TND</g:price>
@@ -8017,7 +8017,7 @@
       <g:title>BIBS BOTTLE NIPPLE FAST FLOW</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1369</g:link>
-      <g:image_link>https://nature-baby.com/cdn/shop/files/5000013_5713795265299_BIBS_BottleNipple_Silicone_FastFlow_2000x2000_jpg.jpg?v=1764645090&width=493</g:image_link>
+      <g:image_link>https://nature-baby.com/cdn/shop/files/5000013_5713795265299_BIBS_BottleNipple_Silicone_FastFlow_2000x2000_jpg.jpg?v=1764645090</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>28.92 TND</g:price>
@@ -8149,7 +8149,7 @@
       <g:title>BIBS PACIFIER PACK IVORY AND SAGE SIZE 3</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1381</g:link>
-      <g:image_link>https://bibsworld.com/cdn/shop/files/BIBS-Studio-bumblebee-lifestyle-4.jpg?v=1741056034&width=1946</g:image_link>
+      <g:image_link>https://bibsworld.com/cdn/shop/files/BIBS-Studio-bumblebee-lifestyle-4.jpg?v=1741056034</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>46.59 TND</g:price>
@@ -8457,7 +8457,7 @@
       <g:title>BIOCYTE GLUTATHION LIPOSOMAL BT /30</g:title>
       <g:description>Produit de parapharmacie N Plus Para</g:description>
       <g:link>https://npluspara.com/product/1409</g:link>
-      <g:image_link>https://www.biocyte.com/cdn/shop/files/773dd4807b5ea410a456267c558505c82dda4a13_byglg30_ambiance_biocyte_bioclongevity_glutathion.jpg?v=1744099023&width=1000</g:image_link>
+      <g:image_link>https://www.biocyte.com/cdn/shop/files/773dd4807b5ea410a456267c558505c82dda4a13_byglg30_ambiance_biocyte_bioclongevity_glutathion.jpg?v=1744099023</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in stock</g:availability>
       <g:price>111.56 TND</g:price>
