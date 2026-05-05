@@ -156,9 +156,7 @@ const Login = () => {
               <AiOutlineLock className="input-icon" />
               <input type={showPassword ? "text" : "password"} placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
-            <button type="button" className="social-pill" onClick={handleGoogleLogin}>
-                <FcGoogle size={20} /> <span>Continuer avec Google</span>
-              </button>
+            
               <span className="forgot-text" onClick={handleResetPassword}>
                 Mot de passe oublié ?
               </span>
