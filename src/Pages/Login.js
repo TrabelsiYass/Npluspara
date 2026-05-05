@@ -70,6 +70,24 @@ const Login = () => {
     }
   };
 
+
+  const handleResetPassword = async () => {
+    if (!email) {
+      alert("Entrez votre email d'abord");
+      return;
+    }
+  
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+  
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Vérifiez votre email pour réinitialiser votre mot de passe");
+    }
+  };
+
   return (
     <div className="login-page">
       <div className="bg-shape shape-1"></div>
@@ -138,7 +156,12 @@ const Login = () => {
               <AiOutlineLock className="input-icon" />
               <input type={showPassword ? "text" : "password"} placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
-            <span className="forgot-text">Mot de passe oublié ?</span>
+            <button type="button" className="social-pill" onClick={handleGoogleLogin}>
+                <FcGoogle size={20} /> <span>Continuer avec Google</span>
+              </button>
+              <span className="forgot-text" onClick={handleResetPassword}>
+                Mot de passe oublié ?
+              </span>
             <p className="toggle-link" onClick={() => setIsSignUp(true)}>
               Vous n'avez pas de compte ? <strong>S'inscrire</strong>
             </p>

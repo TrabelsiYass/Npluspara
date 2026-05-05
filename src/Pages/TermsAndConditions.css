@@ -1,0 +1,95 @@
+:root {
+    --primary-green: #629C38;
+    --dark-green: #052b19;
+    --soft-green: #f4f9f0;
+}
+
+.terms-page {
+    background-color: #fff;
+    color: #444;
+}
+
+/* --- Matching Hero Section --- */
+.terms-hero {
+    background: linear-gradient(rgba(98, 156, 56, 0.9), rgba(5, 43, 25, 0.95)), 
+                url('https://images.unsplash.com/photo-1585995604064-e1c454b311d0?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.terms-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* --- Section Styling --- */
+.terms-content {
+    padding: 80px 0;
+}
+
+.terms-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+    height: 100%;
+    position: relative;
+}
+
+.terms-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.terms-icon {
+    font-size: 2.5rem;
+    color: var(--primary-green);
+    margin-bottom: 20px;
+}
+
+.article-number {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--soft-green);
+    z-index: 0;
+}
+
+.terms-card h3, .terms-card h4 {
+    color: var(--dark-green);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Special Alert Section (Refunds) --- */
+.refund-alert {
+    background: var(--soft-green);
+    border-left: 8px solid var(--primary-green);
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 50px;
+}
+
+/* --- Contact Frame (Matching WhoWeAre) --- */
+.contact-frame {
+    position: relative;
+    padding: 30px;
+    background: var(--dark-green);
+    color: white;
+    border-radius: 30px;
+    margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+    .terms-hero h1 { font-size: 2.2rem; }
+    .terms-content { padding: 40px 0; }
+}

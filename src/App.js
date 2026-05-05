@@ -12,6 +12,7 @@ import Home from "./Pages/Home";
 import { MyProvider } from "./Pages/MyContext";
 import ScrollToTop from "./Pages/Scroll";
 import { CircularProgress } from "@mui/material";
+import TermsAndConditions from "./Pages/TermsAndConditions";
 
 // --- LAZY LOADED PAGES ---
 const Listing = lazy(() => import("./Pages/Listing"));
@@ -53,7 +54,7 @@ function App() {
         // and allow the background MyProvider data to fetch.
         setTimeout(() => {
           setLoading(false);
-        }, 7000); 
+        }, 4000); 
 
       } catch (error) {
         console.error("Initialization error:", error);
@@ -110,6 +111,7 @@ function App() {
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/blog/:id" element={<BlogPostDetail />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/conditions-utilisation" element={<TermsAndConditions />} />
               </Route>
 
               {/* Admin Panel Routes */}

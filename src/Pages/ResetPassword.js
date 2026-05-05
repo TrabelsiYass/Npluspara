@@ -11,39 +11,48 @@ const ResetPassword = () => {
 
     // Check if the user is actually authorized to be here
     useEffect(() => {
-        const checkSession = async () => {
-            const { data } = await supabase.auth.getSession();
-            if (!data.session) {
-                alert("Session expirée ou invalide. Veuillez recommencer la procédure.");
-                navigate('/login');
+        const { data: listener } = supabase.auth.onAuthStateChange(
+            async (event, session) => {
+                if (event === "PASSWORD_RECOVERY") {
+                    // user is allowed to reset password
+                    console.log("Password recovery session active");
+                }
             }
+        );
+    
+        return () => {
+            listener.subscription.unsubscribe();
         };
-        checkSession();
-    }, [navigate]);
+    }, []);
 
     const handlePasswordUpdate = async (e) => {
         e.preventDefault();
-
+    
         if (password !== confirmPassword) {
             alert("Les mots de passe ne correspondent pas.");
             return;
         }
-
+    
         if (password.length < 6) {
-            alert("Le mot de passe doit contenir au moins 6 caractères.");
+            alert("Min 6 caractères");
             return;
         }
-
+    
         setLoading(true);
+    
         try {
             const { error } = await supabase.auth.updateUser({
                 password: password
             });
-
+    
             if (error) throw error;
-
-            alert("Mot de passe mis à jour avec succès !");
+    
+            // 🔥 مهم
+            await supabase.auth.signOut();
+    
+            alert("Mot de passe mis à jour !");
             navigate('/login');
+    
         } catch (error) {
             alert(error.message);
         } finally {

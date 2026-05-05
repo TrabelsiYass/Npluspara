@@ -23,6 +23,7 @@ function Footer() {
                 <li><a href="category/bons-plans">Meilleures ventes</a></li>
                 <li><a href="/Contact">Contactez-nous</a></li>
                 <li><a href="/WhoWeAre">A propos</a></li>
+                <li><a href="/conditions-utilisation">Terms And Conditions</a></li>
               </ul>
             </div>
 
