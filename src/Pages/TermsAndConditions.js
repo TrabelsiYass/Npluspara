@@ -47,7 +47,7 @@ const TermsAndConditions = () => {
               <span className="article-number">02</span>
               <HiOutlineCurrencyDollar className="terms-icon" />
               <h3>Prix et Paiement</h3>
-              <p>Les prix sont indiqués en TND (Dinars Tunisiens). Pour votre sécurité, nous acceptons uniquement le <strong>paiement en espèces à la livraison</strong>.</p>
+              <p>Il faut préciser que lorsque vous optez le choix de paiement à la livraison nous n'acceptons que le règlement en espèces.</p>
             </div>
           </div>
 
@@ -57,7 +57,7 @@ const TermsAndConditions = () => {
               <span className="article-number">03</span>
               <HiOutlineTruck className="terms-icon" />
               <h3>Livraison </h3>
-              <p>Nous livrons sur toute la Tunisie en 24h/48h. Assurez-vous de fournir une adresse exacte à Ariana ou ailleurs pour garantir la rapidité du service.</p>
+              <p>Nous livrons sur toute la Tunisie en 24h/48h. Assurez-vous de fournir une adresse exacte  pour garantir la rapidité du service.</p>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ const TermsAndConditions = () => {
             </div>
             <div className="col-md-10">
               <h4 className="section-title">Politique de Retour (3 Jours)</h4>
-              <p>Conformément à la loi, vous disposez de 3 jours pour retourner un produit. <strong>Attention :</strong> Pour des raisons d'hygiène et de santé, les produits dermo-cosmétiques ouverts ou testés ne seront ni repris ni échangés.</p>
+              <p>Conformément à la loi, vous disposez de 3 jours pour retourner un produit. <strong>Attention :</strong> Pour des raisons d'hygiène et de santé, les produits dermo-cosmétiques ouverts ou testés ou packaging abîmé ne seront ni repris ni échangés.</p>
             </div>
           </div>
         </motion.div>

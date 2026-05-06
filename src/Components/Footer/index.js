@@ -9,7 +9,7 @@ function Footer() {
           <div className="footer-brand">
             <p>
               NPlusPara.tn est N°1 parapharmacie en ligne en Tunisie. 
-              Vous trouverez chez NPlusPara.tn tous vos produits parapharmaceutique 
+              Vous trouverez chez <strong>NPLUSPARA.TN</strong> tous vos produits parapharmaceutiques 
               (santé, beauté, minceur...)
             </p>
           </div>
