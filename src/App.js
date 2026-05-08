@@ -54,7 +54,7 @@ function App() {
         // and allow the background MyProvider data to fetch.
         setTimeout(() => {
           setLoading(false);
-        }, 4000); 
+        },0); 
 
       } catch (error) {
         console.error("Initialization error:", error);
