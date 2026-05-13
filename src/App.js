@@ -3,8 +3,7 @@ import { lazy, useEffect, useState, Suspense } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import './App.css';
 import { supabase } from './Client';
-
-// Core Components (Imported normally for immediate display)
+import { HelmetProvider } from 'react-helmet-async';
 import Footer from "./Components/Footer/index";
 import Header from "./Components/Header/index";
 import FancyPreloader from './Components/FancyPreloader/index';
@@ -77,6 +76,7 @@ function App() {
   }
 
   return (
+    <helmetProvider>
     <BrowserRouter>
       {/* This class handles the fade-in transition from the preloader */}
       <div className="app-fade-in">
@@ -133,6 +133,7 @@ function App() {
         </MyProvider>
       </div>
     </BrowserRouter>
+    </helmetProvider>
   );
 }
 

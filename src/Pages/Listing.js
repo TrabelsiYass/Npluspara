@@ -14,6 +14,7 @@ import ProductItem from "../Components/ProductItem";
 import Sidebar from "../Components/Sidebar";
 import "./Listing.css";
 import { MdFilterList } from 'react-icons/md';
+import { Helmet } from 'react-helmet-async';
 
 const Listing = () => {
   const { categorySlug, subCategorySlug } = useParams();
@@ -58,6 +59,20 @@ const Listing = () => {
     "default": "/assets/images/banner.png",
     "search": "/assets/images/banner.png" 
   };
+
+  const formatTitle = (slug) => {
+    if (!slug) return "";
+    return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  };
+
+  // Determine the dynamic title
+  const rawTitle = searchQuery 
+    ? `Résultats pour "${searchQuery}"` 
+    : subCategorySlug 
+      ? formatTitle(subCategorySlug) 
+      : formatTitle(categorySlug);
+
+  const finalTitle = `${rawTitle || "Nos Produits"} | N Plus Para Tunisie`;
 
   const getBannerStyle = () => {
     let backgroundUrl = categoryBanners.default;
@@ -175,6 +190,13 @@ const Listing = () => {
 
   return (
     <>
+    <Helmet>
+        <title>{finalTitle}</title>
+        <meta name="description" content={`Découvrez notre sélection de ${rawTitle} chez N Plus Para. Les meilleurs prix en Tunisie sur tous vos produits de parapharmacie.`} />
+        <link rel="canonical" href={`https://npluspara.com/category/${categorySlug}${subCategorySlug ? `/${subCategorySlug}` : ''}`} />
+      </Helmet>
+
+      
     <section className="listing_page">
       <div className="container">
         

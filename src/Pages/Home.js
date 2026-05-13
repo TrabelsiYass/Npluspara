@@ -2,7 +2,7 @@ import { Button, CircularProgress } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import { IoMailOutline } from "react-icons/io5";
 import { memo } from 'react';
-
+import { Helmet } from 'react-helmet-async';
 // Assets & Context
 import Newsletterphoto from '../assets/images/coupon.webp';
 import { useMyContext } from "../Pages/MyContext";
@@ -37,6 +37,33 @@ const Home = () => {
 
     return (
         <>
+
+        <Helmet>
+            <title>N Plus Para | Parapharmacie en ligne n°1 en Tunisie</title>
+            <meta name="description" content="Découvrez N Plus Para, votre parapharmacie leader en Tunisie..." />
+            
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "OnlineStore",
+                    "name": "N Plus Para",
+                    "url": "https://npluspara.com",
+                    "logo": "https://npluspara.com/logo512.jpg",
+                    "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+216 28 895 920",
+                    "contactType": "customer service",
+                    "areaServed": "TN",
+                    "availableLanguage": "ARABIC"
+                    },
+                    "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://npluspara.com/products?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                    }
+                })}
+                </script>
+        </Helmet>
             <HomeBanner />
             <HotDeals />
 

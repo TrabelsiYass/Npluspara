@@ -11,6 +11,8 @@ import { supabase } from '../Client';
 import RelatedProduct from '../Components/RelatedProducts/index';
 import { useMyContext } from '../Pages/MyContext';
 import './ProductDetails.css';
+import { Helmet } from 'react-helmet-async';
+
 
 const ProductDetails = () => {
     const { id } = useParams();
@@ -55,6 +57,27 @@ const ProductDetails = () => {
 
     return (
         <section className="product-page-wrapper">
+
+
+            <Helmet>
+            {/* 1. Dynamic Title: Product Name + Brand */}
+            <title>{`${product.name} | ${product.brand} - N Plus Para Tunisie`}</title>
+            
+            {/* 2. SEO Description: Short snippet of the actual description */}
+            <meta name="description" content={`Achetez ${product.name} par ${product.brand} chez N Plus Para. ${product.description?.substring(0, 150)}... Livraison rapide partout en Tunisie.`} />
+            
+            {/* 3. Canonical URL: Prevents duplicate content issues */}
+            <link rel="canonical" href={`https://npluspara.com/product/${product.id}`} />
+
+            {/* 4. Open Graph Tags: For nice previews when sharing on Facebook/WhatsApp */}
+            <meta property="og:title" content={`${product.name} | N Plus Para`} />
+            <meta property="og:description" content={product.description?.substring(0, 160)} />
+            <meta property="og:image" content={product.image_url} />
+            <meta property="og:type" content="product" />
+        </Helmet>
+
+
+        
             <div className="container py-5">
                 
                 {/* 1. TOP UTILITY BAR */}
