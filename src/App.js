@@ -76,7 +76,7 @@ function App() {
   }
 
   return (
-    <helmetProvider>
+    <HelmetProvider>
     <BrowserRouter>
       {/* This class handles the fade-in transition from the preloader */}
       <div className="app-fade-in">
@@ -133,7 +133,7 @@ function App() {
         </MyProvider>
       </div>
     </BrowserRouter>
-    </helmetProvider>
+    </HelmetProvider>
   );
 }
 
