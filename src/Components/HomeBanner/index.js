@@ -3,6 +3,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination'; // Added pagination CSS
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'; // Added Pagination
 import { Swiper, SwiperSlide } from 'swiper/react';
+import banner1 from '../../assets/images/banner1.png';
+import banner2 from '../../assets/images/banner3.jpeg';
+import banner3 from '../../assets/images/banner4.jpeg';
+import banner4 from '../../assets/images/banner5.png';
+import banner5 from '../../assets/images/banner6.png';
 
 import './index.css';
 
@@ -31,7 +36,7 @@ const HomeBanner = () => {
                         <SwiperSlide>
                             <div className='item'>
                                 <img 
-                                    src="https://i.postimg.cc/yYF4FYxT/banner1.png" 
+                                    src={banner1}
                                     loading="lazy" 
                                     className='w-100' 
                                     alt="banner1" 
@@ -41,7 +46,7 @@ const HomeBanner = () => {
                         <SwiperSlide>
                             <div className='item'>
                                 <img 
-                                    src="https://i.postimg.cc/qvLP5b8J/banner5.png"
+                                    src={banner2}
                                     loading="lazy" 
                                     className='w-100' 
                                     alt="banner1" 
@@ -50,19 +55,19 @@ const HomeBanner = () => {
                         </SwiperSlide>
                         <SwiperSlide >
                             <div className='item'>
-                                <img src="https://i.postimg.cc/CKx3TGNb/banner3.jpg" loading="lazy" className='w-100' alt="banner" />
+                                <img src={banner3} loading="lazy" className='w-100' alt="banner" />
                             </div>
                         </SwiperSlide>
 
                         <SwiperSlide >
                             <div className='item'>
-                                <img src="https://i.postimg.cc/R0pjMWs1/banner6.png" loading="lazy" className='w-100' alt="banner" />
+                                <img src={banner4} loading="lazy" className='w-100' alt="banner" />
                             </div>
                         </SwiperSlide>
 
                          <SwiperSlide >
                             <div className='item'>
-                                <img src="https://i.postimg.cc/g02CFVD0/banner4.jpg" loading="lazy" className='w-100' alt="banner" />
+                                <img src={banner5}loading="lazy" className='w-100' alt="banner" />
                             </div>
                         </SwiperSlide>
 
