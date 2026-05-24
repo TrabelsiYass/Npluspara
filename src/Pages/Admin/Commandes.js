@@ -4,7 +4,6 @@ import {
     HiOutlineCash,
     HiOutlineTrash, 
     HiOutlineEye,
-    HiOutlineChatAlt2
 } from "react-icons/hi";
 import { 
     Dialog, 

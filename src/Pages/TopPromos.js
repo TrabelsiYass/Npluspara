@@ -15,22 +15,20 @@ const TopPromos = () => {
             try {
                 setLoading(true);
                 
-                // Fetch products from Flash_products table
                 const { data, error } = await supabase
                     .from('Flash_products')
-                    .select('*');
+                    .select('*')
+                    .abortSignal(controller.signal); // CHANGED: Connected abortSignal to actively listen to the AbortController
 
                 if (error) throw error;
 
-                // Sort by the absolute value of the discount: (old - new)
-                // Assuming your table has old_price and price columns
                 const sortedByDiscount = (data || [])
                     .sort((a, b) => {
                         const discountA = (a.old_price || 0) - (a.price || 0);
                         const discountB = (b.old_price || 0) - (b.price || 0);
                         return discountB - discountA;
                     })
-                    .slice(0, 16); // Take the top 16 best deals
+                    .slice(0, 16); 
 
                 setProducts(sortedByDiscount);
             } catch (err) {
@@ -83,7 +81,6 @@ const TopPromos = () => {
                             className="promo-wrapper"
                             style={{ transitionDelay: `${(index % 4) * 0.1}s` }}
                         >
-                            {/* Pass tableSource as Flash_products */}
                             <ProductItem item={item} tableSource="Flash_products" />
                         </div>
                     ))}

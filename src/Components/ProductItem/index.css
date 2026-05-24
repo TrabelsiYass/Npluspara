@@ -1,6 +1,7 @@
-/* ============================= */
-/* PRODUCT ITEM MAIN CONTAINER  */
-/* ============================= */
+css
+/* ==========================================================================
+   PRODUCT ITEM MAIN CONTAINER
+   ========================================================================== */
 
 .productItem {
     background-color: #fff;
@@ -11,7 +12,9 @@
     border: 1px solid #f0f0f0;
     display: flex;
     flex-direction: column;
-    height: 50vh;
+    /* Flexible height instead of 50vh prevents structural breaking */
+    height: 100%;
+    min-height: 440px; 
 }
 
 .productItem:hover {
@@ -19,35 +22,46 @@
     transform: translateY(-6px);
 }
 
-/* ============================= */
-/* IMAGE AREA */
-/* ============================= */
+/* ==========================================================================
+   IMAGE SECTION
+   ========================================================================== */
 
 .productItem .imgWrapper {
-    height: 200px;
+    height: 180px; 
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #f6f7f9;
-    padding: 20px;
+    padding: 15px;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0; /* Prevents the image section from collapsing */
+}
+
+.productItem .img-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .productItem .imgWrapper img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    transition: transform 0.5s ease;
+    width: auto !important; /* Overrides the bootstrap/global w-100 class */
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important; /* Prevents stretching and cropping */
+    display: block;
 }
 
 .productItem:hover .imgWrapper img {
     transform: scale(1.08);
 }
 
-/* ============================= */
-/* DISCOUNT BADGE */
-/* ============================= */
+/* ==========================================================================
+   DISCOUNT BADGE
+   ========================================================================== */
 
 .productItem .badge {
     position: absolute;
@@ -62,9 +76,9 @@
     z-index: 5;
 }
 
-/* ============================= */
-/* ACTION BUTTONS */
-/* ============================= */
+/* ==========================================================================
+   HOVER ACTIONS BUTTONS
+   ========================================================================== */
 
 .productItem .actions {
     position: absolute;
@@ -101,42 +115,44 @@
     border-color: #629C38 !important;
 }
 
-/* ============================= */
-/* INFO SECTION */
-/* ============================= */
+/* ==========================================================================
+   PRODUCT TEXT AND METRICS INFO
+   ========================================================================== */
 
 .productItem .info_prod {
-    padding: 16px;
+    padding: 14px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Ensures cart button anchors at the base */
 }
 
-/* Brand */
+/* Brand styling */
 .productItem .brand-name {
     color: #9b9b9b;
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
-/* Title */
+/* Title styling with ellipsis clamp */
 .productItem h4 {
     font-size: 14px;
     font-weight: 600;
-    margin: 6px 0;
+    margin: 4px 0;
     line-height: 1.4;
     color: #222;
 
     display: -webkit-box;
     --webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    --webkit-box-orient: vertical;
     overflow: hidden;
+    height: 2.8em; /* Strict line allocation prevents staggered vertical alignment */
 }
 
-/* Short description */
+/* Short description with ellipsis clamp */
 .productItem .short-desc {
     font-size: 12px;
     color: #777;
@@ -144,28 +160,32 @@
 
     display: -webkit-box;
     --webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    --webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* Rating */
+/* Star Rating container */
 .productItem .rating-row {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-/* ============================= */
-/* PRICING */
-/* ============================= */
+/* ==========================================================================
+   PRICING
+   ========================================================================== */
 
 .productItem .product-prices {
     display: flex;
     align-items: center;
-    gap: 8px;
+    flex-wrap: wrap; /* Prevents text colliding if currencies/digits scale large */
+    gap: 6px;
     margin-bottom: 6px;
 }
 
 .productItem .newPrice {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     color: #629C38;
 }
@@ -176,14 +196,14 @@
     text-decoration: line-through;
 }
 
-/* ============================= */
-/* STOCK STATUS */
-/* ============================= */
+/* ==========================================================================
+   STOCK FLAG
+   ========================================================================== */
 
 .productItem .stock {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .productItem .stock.in {
@@ -194,9 +214,9 @@
     color: #e74c3c;
 }
 
-/* ============================= */
-/* ADD TO CART BUTTON */
-/* ============================= */
+/* ==========================================================================
+   ADD TO CART ACTION BUTTON
+   ========================================================================== */
 
 .productItem .add-to-cart-btn {
     width: 100%;
@@ -209,11 +229,11 @@
     font-size: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: auto;
+    margin-top: auto; /* Pushes button firmly to the container bottom edge */
 }
 
 .productItem .add-to-cart-btn:hover {
-    background-color: #629C38;
+    background-color: #4d7a2b;
 }
 
 .productItem .add-to-cart-btn:disabled {
@@ -222,40 +242,56 @@
 }
 
 
-/* ============================= */
-/* MOBILE OPTIMIZATION */
-/* ============================= */
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
 
+/* Medium Devices (Tablets, Medium/Small Desktops, iPads) */
+@media (max-width: 1024px) {
+    .productItem {
+        min-height: 400px;
+    }
+    
+    .productItem .imgWrapper {
+        height: 150px; /* Reduces container size safely to support wrapping */
+    }
+
+    .productItem .short-desc {
+        display: none; /* Safely hides description text block to maintain spacing */
+    }
+
+    .productItem .product-prices {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 0px;
+    }
+}
+
+/* Small Devices (Smartphones and Phablets) */
 @media (max-width: 768px) {
     .productItem {
-        /* Remove fixed viewport height to allow content to dictate size */
         height: auto; 
-        min-height: 400px;
+        min-height: auto;
     }
 
     .productItem .imgWrapper {
-        /* Use aspect-ratio instead of fixed height for responsiveness */
         height: auto;
         aspect-ratio: 1 / 1; 
         padding: 10px;
-        background-color: #f6f7f9;
     }
 
     .productItem .imgWrapper img {
-        /* Ensure the image doesn't overflow and stays centered */
         width: 100%;
         height: 100%;
         object-fit: contain;
     }
 
     .productItem .actions {
-        /* Move actions inside the frame on mobile so they don't hide */
         right: 8px;
         top: 8px;
     }
 
     .productItem .actions button {
-        /* Slightly smaller buttons for small screens */
         width: 32px !important;
         height: 32px !important;
         min-width: 32px !important;
@@ -268,16 +304,11 @@
     .productItem h4 {
         font-size: 13px;
         margin: 4px 0;
-        /* Ensure text doesn't disappear if title is long */
-        --webkit-line-clamp: 2; 
-    }
-
-    .productItem .short-desc {
-        display: none; /* Keep hidden to save vertical space */
+        height: auto; /* Let text scale layout vertically on small Viewports */
     }
 
     .productItem .product-prices {
-        flex-direction: column; /* Stack prices if they are too long */
+        flex-direction: column; 
         align-items: flex-start;
         gap: 2px;
     }

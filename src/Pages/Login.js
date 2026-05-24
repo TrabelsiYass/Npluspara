@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineMail, AiOutlineLock, AiOutlineUser } from "react-icons/ai";
-import { useNavigate } from 'react-router-dom';
+
 import { supabase } from '../Client';
 import './Login.css';
 
@@ -13,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   
-  const navigate = useNavigate();
+ 
 
   const getPasswordStrength = () => {
     if (password.length === 0) return 0;

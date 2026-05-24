@@ -18,6 +18,7 @@ const BlogPage = () => {
       const { data } = await supabase
         .from('posts')
         .select('*')
+        .limit(10) // CHANGED: Added limit to avoid fetching too many heavy post objects onto the homepage view layout simultaneously
         .order('created_at', { ascending: false });
       
       setPosts(data || []);
@@ -42,7 +43,6 @@ const BlogPage = () => {
 
   return (
     <div className="blog-list-page">
-      {/* Editorial Header */}
       <section className="blog-header">
         <div className="container text-center">
           <motion.span 
@@ -60,7 +60,6 @@ const BlogPage = () => {
         </div>
       </section>
 
-      {/* Featured Highlight */}
       {activeCategory === 'Tous' && featuredPost && (
         <section className="container mb-5">
           <Link to={`/blog/${featuredPost.id}`} className="featured-wrapper">
@@ -86,7 +85,6 @@ const BlogPage = () => {
         </section>
       )}
 
-      {/* Filter Bar */}
       <div className="container mb-5">
         <div className="filter-nav">
           {categories.map(cat => (
@@ -101,7 +99,6 @@ const BlogPage = () => {
         </div>
       </div>
 
-      {/* Article Grid */}
       <div className="container pb-5">
         <div className="row g-5">
           {filteredPosts.slice(activeCategory === 'Tous' ? 1 : 0).map((post) => (
@@ -136,7 +133,6 @@ const BlogPage = () => {
         </div>
       </div>
 
-      {/* Newsletter Section */}
       <section className="newsletter-section my-5">
         <div className="container">
           <div className="newsletter-box text-center">

@@ -30,17 +30,17 @@ function Footer() {
             <div className="footer-column">
               <h4>Mon compte</h4>
               <ul>
-                <li><a href="#">Mes commandes</a></li>
-                <li><a href="#">Mes avoirs</a></li>
-                <li><a href="#">Mes informations personnelles</a></li>
+                <li>Mes commandes</li>
+                <li>Mes avoirs</li>
+                <li>Mes informations personnelles</li>
               </ul>
             </div>
 
             <div className="footer-column">
               <h4>Service client</h4>
               <ul>
-                <li>Tél <a href="tel:+21670608000">+216 28 895 920</a></li>
-                <li>Email <a href="mailto:contact@pharma-shop.tn">npluspara@gmail.com</a></li>
+                <li>Tél <a href="tel:+21628895920">+216 28 895 920</a></li>
+                <li>Email <a href="mailto:npluspara@gmail.com">npluspara@gmail.com</a></li>
               </ul>
             </div>
           </div>
@@ -53,7 +53,7 @@ function Footer() {
           
           <div className="social-links">
             <a href="https://www.facebook.com/NPLUSPARA" className="social-link"><FaFacebook /></a>
-            <a href="#" className="social-link"><FaYoutube /></a>
+            <FaYoutube />
             <a href="https://www.instagram.com/npluspara/" className="social-link"><FaInstagram /></a>
           </div>
         </div>

@@ -26,7 +26,7 @@
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    background: url(../assets/images/bonplan2.png)  no-repeat center center  ; 
+    background: url('https://i.postimg.cc/NfhLsMZQ/bonplan2.png')  no-repeat center center  ; 
     background-size: cover;;
     display: flex;
     flex-direction: column;
@@ -39,9 +39,9 @@
 }
 
 /* Custom Backgrounds for different categories */
-.homeProducts .cheveux-bg { background: url(../assets/images/bonplan3.png) no-repeat center center  ; 
+.homeProducts .cheveux-bg { background: url('https://i.postimg.cc/4xP3Q1yQ/bonplan3.png') no-repeat center center  ; 
 background-size: cover;}
-.homeProducts .coffret-bg { background: url(../assets/images/bonplan4.png)  no-repeat center center  ; 
+.homeProducts .coffret-bg { background: url('https://i.postimg.cc/9M6XQ88Y/bonplan4.png')  no-repeat center center  ; 
     background-size: cover; }
 
 .homeProducts .banner:hover {

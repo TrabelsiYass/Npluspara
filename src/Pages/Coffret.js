@@ -21,6 +21,7 @@ const CoffretSection = () => {
                     .from('products')
                     .select('*')
                     .eq('cat_id', 4)
+                    .limit(10) // CHANGED: Added limit to restrict rendering payload size and eliminate scrolling lag
                     .abortSignal(controller.signal);
     
                 if (error) throw error;
@@ -42,7 +43,6 @@ const CoffretSection = () => {
         };
     }, []);
 
-
     if (loading) {
         return (
             <div className="d-flex flex-column align-items-center p-5">
@@ -62,7 +62,7 @@ const CoffretSection = () => {
                         textTransform: 'uppercase',
                         letterSpacing: '1px'
                     }}>
-                        🎁 Soins Du Corps
+                        Soins Du Corps
                     </h3>
                     <p className="text-muted small mb-0">Le plaisir d'offrir ou de se faire plaisir</p>
                 </div>
@@ -87,7 +87,7 @@ const CoffretSection = () => {
                             <SwiperSlide key={item.id}>
                                 <ProductItem 
                                     item={item} 
-                                    tableSource="products" // Added tableSource prop
+                                    tableSource="products" 
                                     categoryName={item.categories?.name} 
                                 />
                             </SwiperSlide>

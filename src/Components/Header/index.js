@@ -23,7 +23,7 @@ const Header = (props) => {
                         <div className='containerheader'>
                             <div className='row'>
                                 <div className='logoWrapper d-flex align-items-center col-sm-2'>
-                                    <Link to={'/'}><img src={Npluslogo} alt='Medilogo'></img></Link>
+                                    <Link to={'/'}><img src={Npluslogo} alt='Npluslogo'></img></Link>
                                 </div>
 
                                 <div className='searchWrapper d-flex align-items-center col-sm-6'>

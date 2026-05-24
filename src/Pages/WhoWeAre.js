@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  HiOutlineBadgeCheck, 
-  HiOutlineSparkles, 
+  HiOutlineBadgeCheck,  
   HiOutlineTruck, 
   HiOutlineHeart,
   HiOutlineShieldCheck,

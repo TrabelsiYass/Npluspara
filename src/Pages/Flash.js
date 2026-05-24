@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { supabase } from '../Client'; // Verified your client file name
+import { supabase } from '../Client'; 
 import ProductItem from '../Components/ProductItem';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -20,7 +19,9 @@ const FlashSaleSection = () => {
             try {
                 const { data, error } = await supabase
                     .from('top_promos')
-                    .select('*');
+                    .select('*')
+                    .limit(10) // CHANGED: Added query limit to control rendering workload and avoid lag
+                    .abortSignal(controller.signal); // CHANGED: Actively hooked up abortSignal to abortController to cancel unneeded network requests
                 
                 if (error) throw error;
                 if (isMounted) setFlashSales(data || []);
@@ -62,7 +63,7 @@ const FlashSaleSection = () => {
                         textTransform: 'uppercase',
                         letterSpacing: '1px'
                     }}>
-                        ⚡ Vente Flash
+                        Vente Flash
                     </h3>
                     <p className="text-muted small mb-0">Offres limitées dans le temps</p>
                 </div>
@@ -85,7 +86,6 @@ const FlashSaleSection = () => {
                     >
                         {flashSales.map((item) => (
                             <SwiperSlide key={item.id}>
-                                {/* Added tableSource prop here */}
                                 <ProductItem item={item} tableSource="top_promos" />
                             </SwiperSlide>
                         ))}

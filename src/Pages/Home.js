@@ -1,32 +1,26 @@
 import { Button, CircularProgress } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
 import { IoMailOutline } from "react-icons/io5";
-import { memo } from 'react';
+import { memo, lazy, Suspense } from 'react'; // CHANGED: Added lazy and Suspense for component lazy-loading
 import { Helmet } from 'react-helmet-async';
-// Assets & Context
 import Newsletterphoto from '../assets/images/coupon.webp';
 import { useMyContext } from "../Pages/MyContext";
-
-// Sub-Components
+import './Home.css';
 import HomeBanner from "../Components/HomeBanner";
 import HotDeals from "../Components/Hotdeals";
-import CheveuxSection from "./Cheveux";
-import FlashSaleSection from "./Flash";
-import BlogSection from "./BlogPage";
-import CoffretSection from "./Coffret";
-import TopPromos from "./TopPromos";
-import BrandCarousel from "./BrandCarousel";
 
-// CSS
-import './Home.css';
+// CHANGED: Converted below-the-fold rows into lazy-loaded components to prevent freezing
+const CheveuxSection = lazy(() => import("./Cheveux"));
+const FlashSaleSection = lazy(() => import("./Flash"));
+const BlogSection = lazy(() => import("./BlogPage"));
+const CoffretSection = lazy(() => import("./Coffret"));
+const TopPromos = lazy(() => import("./TopPromos"));
+const BrandCarousel = lazy(() => import("./BrandCarousel"));
+
+
 
 const Home = () => {
-    // Access global products and loading state from context
     const { products, productsLoading } = useMyContext();
-    const navigate = useNavigate();
 
-    // Guard: Only show the full-screen loader if the context is fetching 
-    // for the first time (i.e., we have no products in memory yet).
     if (productsLoading && products.length === 0) {
         return (
             <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
@@ -37,83 +31,79 @@ const Home = () => {
 
     return (
         <>
-
-        <Helmet>
-            <title>N Plus Para | Parapharmacie en ligne n°1 en Tunisie</title>
-            <meta name="description" content="Découvrez N Plus Para, votre parapharmacie leader en Tunisie..." />
-            
-            <script type="application/ld+json">
-                {JSON.stringify({
-                    "@context": "https://schema.org",
-                    "@type": "OnlineStore",
-                    "name": "N Plus Para",
-                    "url": "https://npluspara.com",
-                    "logo": "https://npluspara.com/logo512.jpg",
-                    "contactPoint": {
-                    "@type": "ContactPoint",
-                    "telephone": "+216 28 895 920",
-                    "contactType": "customer service",
-                    "areaServed": "TN",
-                    "availableLanguage": "ARABIC"
-                    },
-                    "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://npluspara.com/products?q={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                    }
-                })}
+            <Helmet>
+                <title>N Plus Para | Parapharmacie en ligne n°1 en Tunisie</title>
+                <meta name="description" content="Découvrez N Plus Para, votre parapharmacie leader en Tunisie..." />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "OnlineStore",
+                        "name": "N Plus Para",
+                        "url": "https://npluspara.com",
+                        "logo": "https://npluspara.com/logo512.jpg",
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "telephone": "+216 28 895 920",
+                            "contactType": "customer service",
+                            "areaServed": "TN",
+                            "availableLanguage": "ARABIC"
+                        },
+                        "potentialAction": {
+                            "@type": "SearchAction",
+                            "target": "https://npluspara.com/products?q={search_term_string}",
+                            "query-input": "required name=search_term_string"
+                        }
+                    })}
                 </script>
-        </Helmet>
+            </Helmet>
+
             <HomeBanner />
             <HotDeals />
 
-            <section className="homeProducts">
-                <div className="container">
-                    {/* Section 1: Flash Sales */}
-                    <div className="row mb-5">
-                        <div className="col-md-2 ">
-                            <div className="banner">
-                                {/* Banner content or image if needed */}
+            {/* CHANGED: Wrapped heavy subsections in Suspense to stop blocking the main thread during render */}
+            <Suspense fallback={
+                <div className="d-flex justify-content-center py-5">
+                    <CircularProgress style={{ color: '#629C38' }} />
+                </div>
+            }>
+                <section className="homeProducts">
+                    <div className="container">
+                        <div className="row mb-5">
+                            <div className="col-md-2 ">
+                                <div className="banner"></div>
+                            </div>
+                            <div className="col-md-10 productRow">
+                                <FlashSaleSection />
                             </div>
                         </div>
-                        <div className="col-md-10 productRow">
-                            <FlashSaleSection />
-                        </div>
-                    </div>
 
-                    {/* Section 2: Cheveux */}
-                    <div className="row mb-5">
-                        <div className="col-md-2">
-                            <div className="banner cheveux-bg">
-                                {/* Banner content or image if needed */}
+                        <div className="row mb-5">
+                            <div className="col-md-2">
+                                <div className="banner cheveux-bg"></div>
+                            </div>
+                            <div className="col-md-10 productRow">
+                                <CheveuxSection />
                             </div>
                         </div>
-                        <div className="col-md-10 productRow">
-                            <CheveuxSection />
-                        </div>
-                    </div>
 
-                    {/* Section 3: Coffrets */}
-                    <div className="row mb-5">
-                        <div className="col-md-2 d-none d-md-block">
-                            <div className="banner coffret-bg">
-                                <div className="banner-inner">
-                                    {/* Banner content or image if needed */}
+                        <div className="row mb-5">
+                            <div className="col-md-2 d-none d-md-block">
+                                <div className="banner coffret-bg">
+                                    <div className="banner-inner"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-md-10 productRow">
-                            <CoffretSection />
+                            <div className="col-md-10 productRow">
+                                <CoffretSection />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <BrandCarousel />
-            <TopPromos />
-            <BlogSection />
+                <BrandCarousel />
+                <TopPromos />
+                <BlogSection />
+            </Suspense>
 
-            {/* Newsletter Section */}
             <section className="newLetterSection">
                 <div className="container">
                     <div className="row align-items-center">
@@ -142,5 +132,4 @@ const Home = () => {
     );
 }
 
-// memo prevents unnecessary re-renders when navigating back to Home
 export default memo(Home);

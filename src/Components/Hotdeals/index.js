@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { FaChevronLeft, FaChevronRight, FaFire } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { supabase } from '../../Client';
@@ -62,8 +62,16 @@ function HotDeals() {
                     <div className="deals-section">
                         <div className="deals-header">
                             <div className="deals-title">
-                                <FaFire className="fire-icon" />
-                                <span>Hot deal</span>
+                                
+                                <h3 className="mb-0 hd" style={{ 
+                                    color: '#27ae60', 
+                                    fontWeight: '700',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px'
+                                }}>
+                                    
+                                      Bon Plan
+                                </h3>
                             </div>
                             <div className="deals-nav">
                                 <button onClick={() => swiperRef.current?.slidePrev()}>

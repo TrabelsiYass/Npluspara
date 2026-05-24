@@ -115,7 +115,9 @@ const ProductItem = (props) => {
                 </div>
 
                 <div className="info_prod">
-                    <span className="brand-name">{item.brand}</span>
+                    <span className="brand-name">
+                        {item.brand ? item.brand : '...'}
+                    </span>
 
                     <h4
                         className="product-title"

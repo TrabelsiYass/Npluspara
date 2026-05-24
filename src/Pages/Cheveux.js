@@ -20,7 +20,8 @@ const CheveuxSection = () => {
                 const { data, error } = await supabase
                     .from('products')
                     .select('*')
-                    .eq('cat_id', 2) // Example ID for Hair Care
+                    .eq('cat_id', 2) 
+                    .limit(10) // CHANGED: Added limit to prevent over-fetching massive arrays onto the homepage
                     .abortSignal(controller.signal);
 
                 if (error) throw error;
@@ -63,7 +64,7 @@ const CheveuxSection = () => {
                         textTransform: 'uppercase',
                         letterSpacing: '1px'
                     }}>
-                        🌿 Soins De Visage
+                        Soins De Visage
                     </h3>
                     <p className="text-muted small mb-0">Découvrez nos meilleures solutions capillaires</p>
                 </div>
@@ -86,7 +87,6 @@ const CheveuxSection = () => {
                     >
                         {hairProducts.map((item) => (
                             <SwiperSlide key={item.id}>
-                                {/* Explicitly passing "products" as the table source */}
                                 <ProductItem item={item} tableSource="products" />
                             </SwiperSlide>
                         ))}
