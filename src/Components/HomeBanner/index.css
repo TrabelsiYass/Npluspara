@@ -9,10 +9,12 @@
     border-radius: 10px;
 }
 
+/* Optimized image selector to scale clean vertical assets seamlessly */
 .HomeBanner .item img {
     width: 100%;
     height: auto;
-    min-height: 150px; 
+    display: block;
+    object-fit: cover;
 }
 
 /* Customizing Navigation Buttons */
@@ -20,10 +22,9 @@
 .HomeBanner .swiper-button-prev {
     width: 40px !important;
     height: 40px !important;
-    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
     backdrop-filter: blur(5px);
     border-radius: 50%;
-    color: #000 !important;
+    color: #fff !important; /* White arrow glyphs contrast better against the green theme */
     transition: all 0.3s ease;
 }
 
@@ -41,7 +42,7 @@
 
 .HomeBanner .swiper-button-next:after,
 .HomeBanner .swiper-button-prev:after {
-    font-size: 18px !important;
+    font-size: 16px !important; 
     font-weight: bold;
 }
 
@@ -53,23 +54,20 @@
 
 /* Pagination Dots */
 .HomeBanner .swiper-pagination-bullet-active {
-    background: #629C38 !important; /* Your primary color */
+    background: #629C38 !important; 
     width: 12px;
     border-radius: 5px;
 }
 
-/* Mobile Adjustments */
+/* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
     .HomeBanner .swiper-button-next,
     .HomeBanner .swiper-button-prev {
-        display: none !important; /* Hide arrows on small screens for better UX */
+        display: none !important; /* Removes cluttering desktop arrows from touchscreens */
     }
     
     .HomeBanner .item {
-        border-radius: 10px; /* Full width look on mobile */
-    }
-
-    .HomeBanner .item{
-        height: 100% !important;
+        border-radius: 10px; 
+        height: auto !important; /* Overrides full-height constraints so vertical mobile image dictates flow height */
     }
 }
