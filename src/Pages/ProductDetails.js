@@ -193,35 +193,7 @@ const ProductDetails = () => {
                     </div>
                 </div>
 
-                {/* 5. FULL-WIDTH SPECS & FEATURES GRID */}
-                <div className="specs-master-container mt-5 p-5 rounded-5 bg-dark text-white">
-                    <div className="row align-items-center">
-                        <div className="col-md-4">
-                            <h2 className="display-6 fw-bold">Détails <br/><span className="text-success">Techniques</span></h2>
-                            <p className="text-light-50">Chaque détail a été pensé pour offrir une expérience utilisateur inégalée.</p>
-                        </div>
-                        <div className="col-md-8">
-                            <div className="row g-4">
-                                {[
-                                    {icon: <FaBoxOpen/>, t: "Emballage", d: "Coffret Premium"},
-                                    {icon: <FaCertificate/>, t: "Garantie", d: "24 Mois Constructeur"},
-                                    {icon: <FaGem/>, t: "Finition", d: "Élite Chrome"},
-                                    {icon: <FaShieldAlt/>, t: "Protection", d: "Norme IP65"}
-                                ].map((spec, i) => (
-                                    <div key={i} className="col-sm-6">
-                                        <div className="spec-card-dark p-3 border border-secondary rounded-4 d-flex align-items-center gap-3">
-                                            <div className="spec-icon-box">{spec.icon}</div>
-                                            <div>
-                                                <div className="small text-muted">{spec.t}</div>
-                                                <div className="fw-bold">{spec.d}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
                 {/* 6. TABBED CONTENT AREA */}
                 <div className="detailed-tabs-wrapper mt-5 border rounded-4 bg-white shadow-sm overflow-hidden">
